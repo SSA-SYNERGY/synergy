@@ -1,1 +1,2359 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Synergy Sports Academy - Premium Sports Facility Booking</title><link rel="icon" type="image/png" href="img/favicon.png"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><style>:root{--primary:#3a0ca3;--primary-light:#4cc9f0;--secondary:#7209b7;--accent:#4361ee;--light:#f8f9fa;--dark:#212529;--darker:#121212;--success:#4cc9f0;--danger:#f72585;--warning:#f8961e;--gold:#ffd700;--silver:#c0c0c0;--gradient:linear-gradient(135deg, var(--primary), var(--secondary));--gradient-light:linear-gradient(135deg, var(--primary-light), var(--accent))}*{margin:0;padding:0;box-sizing:border-box}html{font-size:14px}body{font-family:Montserrat,sans-serif;background-color:var(--darker);color:var(--light);line-height:1.7;overflow-x:hidden}.container{max-width:1400px;margin:0 auto;padding:2rem}.hero{position:relative;height:80vh;min-height:600px;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url(img/indoor.png) no-repeat center center/cover;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle,rgba(58,12,163,.3) 0,rgba(0,0,0,.8) 70%);animation:pulse 15s infinite alternate}@keyframes pulse{0%{opacity:.3}50%{opacity:.7}100%{opacity:.3}}.hero-content{position:relative;z-index:2;max-width:800px;padding:2rem;animation:fadeInUp 1s ease-out}.hero h1{font-size:4rem;font-weight:700;margin-bottom:1rem;background:linear-gradient(to right,var(--primary-light),var(--light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 2px 10px rgba(0,0,0,.2)}.hero p{font-size:1.5rem;margin-bottom:2rem;color:var(--light)}.scroll-down{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);color:#fff;font-size:2rem;animation:bounce 2s infinite;cursor:pointer}@keyframes bounce{0%,100%,20%,50%,80%{transform:translateY(0) translateX(-50%)}40%{transform:translateY(-20px) translateX(-50%)}60%{transform:translateY(-10px) translateX(-50%)}}header{position:fixed;top:0;left:0;width:100%;padding:1.5rem 0;background:rgba(18,18,18,.9);backdrop-filter:blur(10px);z-index:1000;transition:all .3s ease;border-bottom:1px solid rgba(255,255,255,.1)}header.scrolled{padding:1rem 0;box-shadow:0 5px 20px rgba(0,0,0,.3)}.header-content{display:flex;justify-content:space-between;align-items:center;position:relative}.logo{font-size:1.8rem;font-weight:700;display:flex;align-items:center;color:#fff;text-decoration:none}.logo i{margin-right:.8rem;font-size:2rem;color:var(--primary-light);transition:transform .3s ease}.logo:hover i{transform:rotate(360deg)}.logo span{background:linear-gradient(to right,var(--primary-light),var(--light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:2rem}.nav-links a{color:#fff;text-decoration:none;font-weight:500;position:relative;transition:all .3s ease;min-height:48px;display:flex;align-items:center}.nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:var(--primary-light);transition:width .3s ease}.nav-links a:hover::after{width:100%}.status{background-color:rgba(255,255,255,.1);color:#fff;padding:.7rem 1.5rem;border-radius:50px;font-weight:600;display:flex;align-items:center;backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.1);transition:all .3s ease}.status:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.2)}.status-indicator{width:12px;height:12px;border-radius:50%;margin-right:.7rem}.status-open .status-indicator{background-color:var(--success);box-shadow:0 0 10px var(--success)}.status-closed .status-indicator{background-color:var(--danger);box-shadow:0 0 10px var(--danger)}.status-full .status-indicator{background-color:var(--warning);box-shadow:0 0 10px var(--warning)}.about-section{padding:6rem 0;background:var(--darker);position:relative}.about-section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url(img/indoor2.png) no-repeat center center/cover;opacity:.05;z-index:0}.section-title{font-size:3rem;font-weight:700;margin:0 auto 3rem auto;text-align:center;color:#fff;width:100%;display:block}.section-title::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:var(--gradient);border-radius:2px}.about-content{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}.about-text{animation:fadeInLeft 1s ease-out}.about-text h3{font-size:2rem;margin-bottom:1.5rem;color:var(--primary-light)}.about-text p{margin-bottom:1.5rem;color:rgba(255,255,255,.8)}.about-features{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}.feature-card{background:rgba(255,255,255,.05);padding:1.5rem;border-radius:10px;border:1px solid rgba(255,255,255,.1);transition:all .3s ease;min-height:200px}.feature-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.1);box-shadow:0 10px 20px rgba(0,0,0,.2)}.feature-card i{font-size:2rem;margin-bottom:1rem;color:var(--primary-light)}.feature-card h4{font-size:1.2rem;margin-bottom:.5rem;color:#fff}.feature-card p{font-size:.9rem;color:rgba(255,255,255,.7)}.about-image{position:relative;animation:fadeInRight 1s ease-out}.about-image img{width:100%;border-radius:15px;box-shadow:0 20px 40px rgba(0,0,0,.3);transform:perspective(1000px) rotateY(-10deg);transition:all .5s ease}.about-image:hover img{transform:perspective(1000px) rotateY(0)}.about-image::before{content:'';position:absolute;top:-20px;left:-20px;width:100%;height:100%;border:2px solid var(--primary-light);border-radius:15px;z-index:-1;opacity:.5;transition:all .5s ease}.about-image:hover::before{top:-15px;left:-15px;opacity:.8}.booking-section{padding:6rem 0;background:linear-gradient(to bottom,var(--darker),#0a0a0a);position:relative}.booking-section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url(img/indoor4.avif) no-repeat center center/cover;opacity:.05;z-index:0}.booking-container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;position:relative;z-index:1}.booking-form{background:rgba(18,18,18,.8);border-radius:15px;padding:3rem;box-shadow:0 20px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);transform:translateY(30px);opacity:0;animation:fadeInUp .8s forwards .3s}@keyframes fadeInUp{to{transform:translateY(0);opacity:1}}.form-title{font-size:2rem;margin-bottom:2rem;color:#fff;position:relative;padding-bottom:1rem}.form-title::after{content:'';position:absolute;bottom:0;left:0;width:80px;height:4px;background:var(--gradient);border-radius:2px}.form-group{margin-bottom:2rem}label{display:block;margin-bottom:.8rem;font-weight:500;color:#fff;font-size:1.1rem}input,select{width:100%;padding:1rem 1.5rem;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:10px;font-family:Montserrat,sans-serif;font-size:1rem;color:#fff;transition:all .3s ease}input:focus,select:focus{border-color:var(--primary-light);outline:0;box-shadow:0 0 0 3px rgba(72,149,239,.2);background:rgba(255,255,255,.1)}input::placeholder{color:rgba(255,255,255,.5)}.btn{background:var(--gradient);color:#fff;border:none;padding:1rem 3rem;border-radius:10px;font-family:Montserrat,sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all .3s ease;box-shadow:0 10px 20px rgba(58,12,163,.3);display:inline-flex;align-items:center;justify-content:center;position:relative;overflow:hidden;z-index:1;min-height:48px;min-width:120px}.btn::before{content:'';position:absolute;top:0;left:0;width:0;height:100%;background:var(--gradient-light);transition:width .3s ease;z-index:-1}.btn:hover::before{width:100%}.btn:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(58,12,163,.4)}.btn:active{transform:translateY(0)}.btn i{margin-right:.8rem}.booking-details{background:rgba(18,18,18,.8);border-radius:15px;padding:3rem;box-shadow:0 20px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);transform:translateY(30px);opacity:0;animation:fadeInUp .8s forwards .6s}.details-title{font-size:2rem;margin-bottom:2rem;color:#fff;position:relative;padding-bottom:1rem}.details-title::after{content:'';position:absolute;bottom:0;left:0;width:80px;height:4px;background:var(--gradient);border-radius:2px}.time-slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.2rem;margin-bottom:2rem}.time-slot{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:10px;padding:1rem;text-align:center;cursor:pointer;transition:all .3s ease;color:#fff;font-weight:500;min-height:60px;display:flex;align-items:center;justify-content:center}.time-slot:hover{border-color:var(--primary-light);transform:translateY(-3px);box-shadow:0 5px 15px rgba(0,0,0,.2)}.time-slot.selected{background:var(--gradient);color:#fff;border-color:transparent;transform:translateY(-3px);box-shadow:0 5px 15px rgba(58,12,163,.4)}.time-slot.booked{background:rgba(247,37,133,.1);color:rgba(255,255,255,.3);cursor:not-allowed;position:relative;overflow:hidden}.time-slot.booked::after{content:'BOOKED';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-size:.8rem;font-weight:700;color:var(--danger);opacity:.7;letter-spacing:2px}.availability-info{background:rgba(58,12,163,.1);border-radius:10px;padding:2rem;margin-top:2rem;border:1px solid rgba(72,149,239,.2)}.availability-title{font-weight:600;margin-bottom:1rem;display:flex;align-items:center;color:var(--primary-light);font-size:1.2rem}.availability-title i{margin-right:1rem;color:var(--primary-light);font-size:1.5rem}.availability-info ul{list-style:none}.availability-info li{margin-bottom:.8rem;color:rgba(255,255,255,.8);position:relative;padding-left:1.5rem}.availability-info li::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;left:0;color:var(--primary-light)}.confirmation{display:none;background:rgba(18,18,18,.9);border-radius:15px;padding:4rem;box-shadow:0 20px 40px rgba(0,0,0,.3);text-align:center;animation:fadeIn .5s ease;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);max-width:800px;margin:0 auto}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.confirmation i{font-size:5rem;color:var(--success);margin-bottom:2rem;animation:bounce 1s infinite alternate}.confirmation h2{font-size:2.5rem;margin-bottom:1.5rem;color:#fff;background:linear-gradient(to right,var(--primary-light),var(--light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.confirmation p{margin-bottom:2rem;color:rgba(255,255,255,.8);font-size:1.1rem;line-height:1.8}.confirmation-details{background:rgba(58,12,163,.1);border-radius:10px;padding:2rem;margin-bottom:3rem;text-align:left;border:1px solid rgba(72,149,239,.2)}.confirmation-detail{display:flex;margin-bottom:1rem;color:rgba(255,255,255,.9)}.confirmation-detail strong{min-width:150px;display:inline-block;color:var(--primary-light)}.contact-section{padding:6rem 0;background:linear-gradient(to bottom,#0a0a0a,var(--darker));position:relative}.contact-section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url(img/indoor.png) no-repeat center center/cover;opacity:.05;z-index:0}.contact-container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;position:relative;z-index:1}.contact-info{background:rgba(18,18,18,.8);border-radius:15px;padding:3rem;box-shadow:0 20px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px)}.contact-info h3{font-size:2rem;margin-bottom:2rem;color:#fff;position:relative;padding-bottom:1rem}.contact-info h3::after{content:'';position:absolute;bottom:0;left:0;width:80px;height:4px;background:var(--gradient);border-radius:2px}.contact-detail{display:flex;align-items:flex-start;margin-bottom:2rem}.contact-detail i{font-size:1.5rem;color:var(--primary-light);margin-right:1.5rem;margin-top:.3rem}.contact-detail-content h4{font-size:1.2rem;margin-bottom:.5rem;color:#fff}.contact-detail-content p{color:rgba(255,255,255,.7);line-height:1.7}.social-links{display:flex;gap:1.5rem;margin-top:2rem}.social-links a{display:flex;align-items:center;justify-content:center;width:50px;height:50px;background:rgba(255,255,255,.05);border-radius:50%;color:#fff;font-size:1.5rem;transition:all .3s ease;border:1px solid rgba(255,255,255,.1)}.social-links a:hover{background:var(--gradient);transform:translateY(-3px);box-shadow:0 10px 20px rgba(58,12,163,.3)}.map-container{height:100%;border-radius:15px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,.3);position:relative}.map-container iframe{width:100%;height:100%;border:none}.spinner{display:none;width:50px;height:50px;margin:0 auto;border:5px solid rgba(72,149,239,.2);border-radius:50%;border-top-color:var(--primary-light);animation:spin 1s ease-in-out infinite}@keyframes spin{to{transform:rotate(360deg)}}.error-message{color:#fff;background:rgba(247,37,133,.2);padding:1.5rem;border-radius:10px;margin-bottom:2rem;display:none;border:1px solid rgba(247,37,133,.3);animation:shake .5s ease}@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}.success-message{color:#fff;background:rgba(76,201,240,.2);padding:1.5rem;border-radius:10px;margin-bottom:2rem;display:none;border:1px solid rgba(76,201,240,.3)}.yunoxa-credit{margin-top:1rem;font-size:.9rem;color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:.3rem}.yunoxa-credit i{margin:0 .2rem}select option{background-color:var(--darker);color:#fff;padding:10px}select:focus option:checked{background:var(--gradient);color:#fff}input[type=date]::-webkit-calendar-picker-indicator{filter:invert(.8);cursor:pointer;padding:4px;border-radius:4px;background-color:rgba(255,255,255,.1);transition:all .3s ease}input[type=date]::-webkit-calendar-picker-indicator:hover{background-color:var(--primary-light);filter:invert(0)}input[type=date]::-webkit-datetime-edit{color:#fff;padding:.5rem}input[type=date]::-webkit-datetime-edit-fields-wrapper{background:0 0}input[type=date]::-webkit-datetime-edit-text{color:#fff;padding:0 .3rem}input[type=date]::-webkit-datetime-edit-day-field,input[type=date]::-webkit-datetime-edit-month-field,input[type=date]::-webkit-datetime-edit-year-field{color:#fff}::-webkit-datetime-edit-day-field:focus,::-webkit-datetime-edit-month-field:focus,::-webkit-datetime-edit-year-field:focus{background-color:var(--primary-light);color:var(--dark);outline:0;border-radius:4px}input[type=date]{color-scheme:dark}input[type=date]::-moz-calendar-picker-indicator{filter:invert(.8);cursor:pointer;padding:4px;border-radius:4px;background-color:rgba(255,255,255,.1);transition:all .3s ease}input[type=date]::-moz-calendar-picker-indicator:hover{background-color:var(--primary-light);filter:invert(0)}footer{background:#0a0a0a;padding:4rem 0 2rem;text-align:center;position:relative}.footer-content{max-width:1200px;margin:0 auto;padding:0 2rem}.footer-logo{font-size:2rem;font-weight:700;margin-bottom:2rem;display:inline-block}.footer-logo i{margin-right:.8rem;color:var(--primary-light)}.footer-logo span{background:linear-gradient(to right,var(--primary-light),var(--light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:2rem;margin-bottom:2rem}.footer-links a{color:rgba(255,255,255,.7);text-decoration:none;transition:all .3s ease}.footer-links a:hover{color:var(--primary-light)}.footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:2rem}.footer-social a{display:flex;align-items:center;justify-content:center;width:45px;height:45px;background:rgba(255,255,255,.05);border-radius:50%;color:#fff;font-size:1.2rem;transition:all .3s ease}.footer-social a:hover{background:var(--gradient);transform:translateY(-3px)}.copyright{color:rgba(255,255,255,.5);font-size:.9rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}.particles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}.particle{position:absolute;background:rgba(255,255,255,.1);border-radius:50%;animation:float linear infinite}@keyframes float{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-100vh) rotate(360deg)}}.mybookings-section{padding:6rem 0;background:linear-gradient(to bottom,var(--darker),#0a0a0a);position:relative}.mybookings-container{background:rgba(18,18,18,.8);border-radius:15px;padding:3rem;box-shadow:0 20px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px)}.mybooking-card{background:rgba(255,255,255,.05);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.1);transition:all .3s ease}.mybooking-card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.2);border-color:var(--primary-light)}.mybooking-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.1)}.mybooking-id{font-weight:600;color:var(--primary-light)}.mybooking-date{color:rgba(255,255,255,.7);font-size:.9rem}.mybooking-details{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}.mybooking-detail{margin-bottom:.5rem}.mybooking-detail strong{display:block;color:var(--primary-light);font-size:.9rem;margin-bottom:.3rem}.mybooking-detail span{color:#fff}.myno-bookings{text-align:center;padding:2rem;color:rgba(255,255,255,.7);font-size:1.1rem}.popup-notification{position:fixed;bottom:20px;right:20px;background:rgba(76,201,240,.9);color:#fff;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,.2);display:flex;align-items:center;gap:1rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s ease;backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.2)}.popup-notification.show{transform:translateY(0);opacity:1}.popup-notification i{font-size:1.8rem}.popup-message{font-weight:500}.logo-img{width:70px;height:70px;margin-right:.8rem;transition:transform .3s ease}.logo:hover .logo-img{transform:rotate(360deg)}.footer-logo-container{display:flex;align-items:center;justify-content:center}.footer-logo .logo-img{width:70px;height:70px;margin-right:1rem;align-self:center}.footer-logo span{display:inline-block;vertical-align:middle;line-height:normal}.reveal{opacity:0;transform:translateY(30px);transition:all .8s ease}.reveal.active{opacity:1;transform:translateY(0)}.mobile-menu-toggle{display:none;background:0 0;border:none;color:#fff;font-size:1.5rem;cursor:pointer;min-height:48px;min-width:48px}@media (max-width:1024px){.booking-container,.contact-container{grid-template-columns:1fr}}@media (max-width:768px){html{font-size:12px}body{padding-top:100px}.container{padding:1rem}.hero{height:60vh;min-height:400px}.hero h1{font-size:2.5rem;line-height:1.2}.hero p{font-size:1.2rem;margin-bottom:1.5rem}.section-title{font-size:2rem;margin-bottom:2rem}.about-content{grid-template-columns:1fr;gap:2rem}.about-features{grid-template-columns:1fr}.about-image img{transform:perspective(1000px) rotateY(0)}.booking-details,.booking-form,.contact-info{padding:1.5rem}.time-slots{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}.form-group{margin-bottom:1.5rem}.btn{width:100%;padding:.8rem}.mobile-menu-toggle{display:block}.nav-links{position:fixed;top:80px;left:0;width:100%;background:var(--darker);flex-direction:column;align-items:center;padding:1rem 0;gap:1rem;border-bottom:1px solid rgba(255,255,255,.1);transform:translateY(-150%);transition:transform .3s ease}.nav-links.active{transform:translateY(0)}.status{padding:.5rem 1rem;font-size:.9rem}.about-section,.booking-section,.contact-section,.mybookings-section{padding:3rem 0}.mybookings-section{padding:6rem 0;background:linear-gradient(to bottom,var(--darker),#0a0a0a);position:relative}.mybookings-container{background:rgba(18,18,18,.8);border-radius:15px;padding:1rem;box-shadow:0 20px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px)}.mybooking-card{background:rgba(255,255,255,.05);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.1);transition:all .3s ease}.mybooking-card:hover{transform:translateY(-5px);box-shadow:0 10px 20px rgba(0,0,0,.2);border-color:var(--primary-light)}.mybooking-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.1)}.mybooking-id{font-weight:600;color:var(--primary-light)}.mybooking-date{color:rgba(255,255,255,.7);font-size:.9rem}.mybooking-details{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:1rem}.mybooking-detail{margin-bottom:.5rem}.mybooking-detail strong{display:block;color:var(--primary-light);font-size:.9rem;margin-bottom:.3rem}.mybooking-detail span{color:#fff}.myno-bookings{text-align:center;padding:2rem;color:rgba(255,255,255,.7);font-size:1.1rem}.logo-img{width:40px;height:40px;margin-right:.8rem;transition:transform .3s ease}.logo:hover .logo-img{transform:rotate(360deg)}.logo{font-size:1.5rem;font-weight:700;display:flex;align-items:center;color:#fff;text-decoration:none}.logo i{margin-right:.8rem;font-size:2rem;color:var(--primary-light);transition:transform .3s ease}.logo:hover i{transform:rotate(360deg)}.logo span{background:linear-gradient(to right,var(--primary-light),var(--light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.contact-detail{gap:.5rem}.contact-detail i{margin-right:0;margin-bottom:.1rem}.map-container{height:300px}.footer-links{flex-direction:column;gap:1rem}.footer-social{gap:1rem}.footer-social a{width:40px;height:40px;font-size:1rem}.confirmation{padding:2rem}.confirmation-detail{flex-direction:column}.confirmation-detail strong{min-width:auto;margin-bottom:.5rem}.footer-logo-container{display:flex;align-items:center;justify-content:center}.footer-logo .logo-img{width:40px;height:40px;margin-right:1rem;align-self:center}.footer-logo span{display:inline-block;vertical-align:middle;line-height:normal}}.popup-notification{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(76,201,240,.9);color:#fff;padding:1rem 1.5rem;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,.2);display:flex;align-items:center;gap:1rem;z-index:9999;opacity:0;transition:all .3s ease;backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.2);max-width:90%;text-align:center}.popup-notification.show{transform:translateX(-50%) translateY(0);opacity:1}@media (min-width:768px){html{font-size:16px}}</style></head><body><div class="particles" id="particles"></div><header id="header"><div class="container header-content"><a href="#" class="logo"><img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img"><span>Synergy Sports</span></a><div class="nav-links"><a href="index.html">Home</a><a href="#about">About</a><a href="#booking">Book Now</a><a href="#contact">Contact</a><a href="posts.html" class="active">Posts</a></div><div class="status status-open" id="academyStatus"><div class="status-indicator"></div><span>Open - Bookings Available</span></div></div></header><section class="hero" id="home"><div class="hero-content"><h1 class="animate__animated animate__fadeInDown">Synergy Sports Academy</h1><p class="animate__animated animate__fadeInUp animate__delay-1s">Premium sports indoor facility opening on August 2, 2025</p><a href="#booking" class="btn animate__animated animate__fadeInUp animate__delay-2s"><i class="fas fa-calendar-alt"></i>Book Your Session</a></div><a href="#about" class="scroll-down animate__animated animate__fadeIn animate__delay-3s"><i class="fas fa-chevron-down"></i></a></section><section class="about-section" id="about"><div class="container"><h2 class="section-title reveal">About Our Academy</h2><div class="about-content"><div class="about-text reveal"><h3>Premium Multi-Sports Facility</h3><p>Synergy Sports is Gampola's premier Multi sports center, offering a world-class playing experience for players of all skill levels. Our state-of-the-art facility opens August 2, 2025 in Mahara, Gampola.</p><p>Versatile setups for competitive matches, casual play, and skill development</p><div class="about-features"><div class="feature-card reveal" style="transition-delay:.1s"><i class="fas fa-trophy"></i><h4>Professional Courts</h4><p>High-quality surfaces designed for optimal performance and safety.</p></div><div class="feature-card reveal" style="transition-delay:.2s"><i class="fas fa-clock"></i><h4>Flexible Hours</h4><p>Open from 5AM to 11PM to accommodate all schedules.</p></div><div class="feature-card reveal" style="transition-delay:.3s"><i class="fas fa-futbol"></i><h4>Premium Multi Sports Facility</h4><p>Professional-grade courts with premium flooring for optimal performance</p></div><div class="feature-card reveal" style="transition-delay:.4s"><i class="fas fa-medal"></i><h4>Competition Ready</h4><p>Facilities designed to meet official competition standards.</p></div></div></div><div class="about-image reveal"><img src="img/indoor3.png" alt="Synergy Sports Academy Court"></div></div></div></section><section class="mybookings-section" id="my-bookings"><div class="container"><h2 class="section-title reveal">My Bookings</h2><div class="mybookings-container reveal"><div class="mybookings-list" id="bookingsList"></div></div></div></section><section class="booking-section" id="booking"><div class="container"><h2 class="section-title reveal">Book Your Session</h2><div class="booking-container"><div class="booking-form reveal"><h2 class="form-title">Session Details</h2><div class="error-message" id="errorMessage"></div><div class="success-message" id="successMessage"></div><form id="bookingFormElement"><div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required placeholder="Enter your full name"></div><div class="form-group"><label for="mobile">Mobile Number</label><input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}"></div><div class="form-group"><label for="bookingType">Session Type</label><select id="bookingType" name="bookingType" required><option value="">Select session type</option><option value="normal">Normal (1000/= to 1200/=)</option><option value="fullnet">Full Net (2800/=)</option></select></div><div class="form-group"><label for="date">Booking Date</label><input type="date" id="date" name="date" required></div><div class="form-group"><label>Select Time Slot</label><input type="hidden" id="selectedSlot" name="selectedSlot" required><div class="time-slots" id="timeSlots"></div></div><button type="submit" class="btn" id="submitBtn"><i class="fas fa-calendar-check"></i>Confirm Booking</button><div class="spinner" id="loadingSpinner"></div></form></div><div class="booking-details reveal"><h2 class="details-title">Availability</h2><p>Select a date to see available time slots</p><div class="availability-info"><h3 class="availability-title"><i class="fas fa-info-circle"></i>Booking Information</h3><ul><li>Opening Date: August 2, 2025</li><li>Location: 294, Mahara, Gampola</li><li>Contact: 0701295479</li></ul></div></div></div></div></section><div class="container" id="confirmationContainer" style="display:none"><div class="confirmation"><i class="fas fa-check-circle"></i><h2>Booking Confirmed!</h2><p>Your session has been successfully booked at Synergy Sports Academy. We've sent the details to your mobile number.</p><div class="confirmation-details"><div class="confirmation-detail"><strong>Name:</strong><span id="confirmName"></span></div><div class="confirmation-detail"><strong>Mobile:</strong><span id="confirmMobile"></span></div><div class="confirmation-detail"><strong>Date:</strong><span id="confirmDate"></span></div><div class="confirmation-detail"><strong>Time Slot:</strong><span id="confirmTime"></span></div><div class="confirmation-detail"><strong>Booking ID:</strong><span id="confirmId"></span></div><div class="confirmation-detail"><strong>Session Type:</strong><span id="confirmType"></span></div></div><button class="btn" id="newBookingBtn"><i class="fas fa-plus"></i>Make Another Booking</button></div></div><section class="contact-section" id="contact"><div class="container"><h2 class="section-title reveal">Contact Us</h2><div class="contact-container"><div class="contact-info reveal"><h3>Get In Touch</h3><div class="contact-detail"><i class="fas fa-map-marker-alt"></i><div class="contact-detail-content"><h4>Location</h4><p>294, Mahara, Gampola</p></div></div><div class="contact-detail"><i class="fas fa-phone-alt"></i><div class="contact-detail-content"><h4>Phone</h4><p>0701295479</p></div></div><div class="contact-detail"><i class="fas fa-envelope"></i><div class="contact-detail-content"><h4>Email</h4><p>contactsynergyservices@gmail.com</p></div></div><div class="contact-detail"><i class="fas fa-clock"></i><div class="contact-detail-content"><h4>Opening Hours</h4><p>5:00 AM - 11:00 PM Daily<br>Opening On August 2, 2025</p></div></div><div class="social-links"><a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/p/DMiXjHMypuRmcr2Gk5Qqi-eIHYn3vtD6lTpFv80/?igsh=aGlyeW00a28zNWhp"><i class="fab fa-instagram"></i></a><a href="https://wa.me/94701295479"><i class="fab fa-whatsapp"></i></a><a href="https://www.tiktok.com/@dinethabeyrathna?_t=ZS-8yM3jNPcAyY&_r=1"><i class="fab fa-tiktok"></i></a></div></div><div class="map-container reveal"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31660.01585024138!2d80.56458346977539!3d7.164999999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae371d25c4d3ff9%3A0x7a1b8e3b4a3b3b3b!2sGampola!5e0!3m2!1sen!2slk!4v1620000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe></div></div></div></section><div class="popup-notification" id="popupNotification"><div class="popup-content"><i class="fas fa-check-circle"></i><div class="popup-message">Booking synced to server successfully!</div></div></div><footer><div class="footer-content"><div class="footer-logo"><div class="footer-logo-container"><img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img"><span>Synergy Sports</span></div></div><div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#booking">Book Now</a><a href="#contact">Contact</a><a href="posts.html">Posts</a></div><div class="footer-social"><a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/p/DMiXjHMypuRmcr2Gk5Qqi-eIHYn3vtD6lTpFv80/?igsh=aGlyeW00a28zNWhp"><i class="fab fa-instagram"></i></a><a href="https://wa.me/94701295479"><i class="fab fa-whatsapp"></i></a><a href="https://www.tiktok.com/@dinethabeyrathna?_t=ZS-8yM3jNPcAyY&_r=1"><i class="fab fa-tiktok"></i></a></div><div class="copyright">&copy; 2025 Synergy Sports Academy. All rights reserved.</div><div class="yunoxa-credit">Made withYunoxa</div></div></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script type="module">const _0x3e3b22=_0x3783;(function(_0x537dc1,_0x1b9c3b){const _0x3e2731=_0x3783,_0x5c9e2f=_0x537dc1();while(!![]){try{const _0x38fd1e=parseInt(_0x3e2731(0xa3))/0x1+parseInt(_0x3e2731(0x106))/0x2+parseInt(_0x3e2731(0x101))/0x3+-parseInt(_0x3e2731(0xa6))/0x4*(parseInt(_0x3e2731(0xac))/0x5)+parseInt(_0x3e2731(0x92))/0x6*(-parseInt(_0x3e2731(0xa2))/0x7)+parseInt(_0x3e2731(0x9f))/0x8*(parseInt(_0x3e2731(0xf3))/0x9)+-parseInt(_0x3e2731(0xb3))/0xa;if(_0x38fd1e===_0x1b9c3b)break;else _0x5c9e2f['push'](_0x5c9e2f['shift']());}catch(_0x386ca8){_0x5c9e2f['push'](_0x5c9e2f['shift']());}}}(_0x1724,0xed3d7));import{createClient}from'https://esm.sh/@supabase/supabase-js@2';const supabaseUrl='https://pjizlsqsoabenusktozx.supabase.co',supabaseKey='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqaXpsc3Fzb2FiZW51c2t0b3p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzMDMsImV4cCI6MjA2ODg5MTMwM30.-io9iSz6H9DhCN_esvmcX_RjlJAkd9mpa_ujhNoTrZ8',supabase=createClient(supabaseUrl,supabaseKey),bookingFormElement=document[_0x3e3b22(0xab)](_0x3e3b22(0xfe)),nameInput=document[_0x3e3b22(0xab)](_0x3e3b22(0xef)),mobileInput=document[_0x3e3b22(0xab)](_0x3e3b22(0xc4)),dateInput=document[_0x3e3b22(0xab)](_0x3e3b22(0xf6)),selectedSlotInput=document[_0x3e3b22(0xab)](_0x3e3b22(0xff)),timeSlotsContainer=document[_0x3e3b22(0xab)]('timeSlots'),submitBtn=document[_0x3e3b22(0xab)]('submitBtn'),loadingSpinner=document['getElementById'](_0x3e3b22(0x98)),errorMessage=document[_0x3e3b22(0xab)](_0x3e3b22(0x89)),successMessage=document['getElementById']('successMessage'),academyStatus=document[_0x3e3b22(0xab)]('academyStatus'),confirmationContainer=document[_0x3e3b22(0xab)]('confirmationContainer'),newBookingBtn=document['getElementById'](_0x3e3b22(0xe5)),bookingTypeInput=document[_0x3e3b22(0xab)](_0x3e3b22(0x102)),header=document[_0x3e3b22(0xab)](_0x3e3b22(0xcc)),confirmName=document[_0x3e3b22(0xab)](_0x3e3b22(0xea)),confirmMobile=document[_0x3e3b22(0xab)](_0x3e3b22(0xaf)),confirmDate=document['getElementById'](_0x3e3b22(0x8d)),confirmTime=document['getElementById'](_0x3e3b22(0xa4)),confirmId=document['getElementById'](_0x3e3b22(0xde)),confirmType=document[_0x3e3b22(0xab)](_0x3e3b22(0xd6)),today=new Date(),dd=String(today[_0x3e3b22(0xe3)]())['padStart'](0x2,'0'),mm=String(today['getMonth']()+0x1)[_0x3e3b22(0xbe)](0x2,'0'),yyyy=today[_0x3e3b22(0xf1)]();dateInput['min']=yyyy+'-'+mm+'-'+dd;function _0x1724(){const _0x217761=['animationDelay','none','className','getDate','booking_date','newBookingBtn','block','stringify','<div\x20class=\x22status-indicator\x22></div><span>Status\x20Unavailable</span>','width','confirmName','Supabase\x20upload\x20error:','insert','Full\x20Net\x20(2800/=)','synergyBookings','name','particle','getFullYear','booking','60615fCxXTY','top','Normal\x20(1000/=\x20to\x201200/=)','date','scrollY','particles','.reveal','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-date\x22>','bookings','error','push','bookingFormElement','selectedSlot','end_time','1998009oVlOew','bookingType','from','animationDuration','getItem','306752zcNujq','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-detail\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Time\x20Slot</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','remove','includes','start','querySelector','time-slot\x20','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-detail\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Session\x20Type</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-detail\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Name</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','Please\x20select\x20a\x20time\x20slot','smooth','SYN-','length','parse','scrolled','errorMessage','querySelectorAll','Error\x20creating\x20booking:','selected','confirmDate','Error\x20checking\x20academy\x20status:','Error\x20fetching\x20booked\x20slots:','active','booked','18mjPZVF','Booking\x20confirmed\x20successfully!','classList','start_time','random','load','loadingSpinner','normal','.booking-form','created_at','split','select','addEventListener','1576iTkjBe','time_slot','now','737639EbJtFG','399463yRpGRL','confirmTime','getBoundingClientRect','4jKZhav','value','message','.time-slot','filter','getElementById','1730735JBNqBO','style','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','confirmMobile','numeric','Failed\x20to\x20upload\x20booking\x20to\x20server.\x20Please\x20try\x20again.','long','9116240wntAfD','getHours','height','add','innerHTML','bookingsList','forEach','left','end','toString','map','padStart','textContent',':00','status\x20status-open','toLocaleDateString','disabled','mobile','click','div','preventDefault',':00\x20','test','<div\x20class=\x22status-indicator\x22></div><span>Open\x20-\x20Bookings\x20Available</span>','appendChild','header','setItem','reset','toISOString','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-detail\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>Mobile</strong>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','show','display','scroll','en-US','innerHeight','confirmType','createElement','status\x20status-closed','<div\x20class=\x22myno-bookings\x22>You\x20have\x20no\x20bookings\x20yet.\x20Book\x20a\x20session\x20to\x20get\x20started!</div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22mybooking-id\x22>','type','Please\x20select\x20a\x20session\x20type','dataset','confirmId','.booking-details'];_0x1724=function(){return _0x217761;};return _0x1724();}const generateTimeSlots=()=>{const _0x4fd365=_0x3e3b22,_0x46e3ca=[];for(let _0x385d3c=0x5;_0x385d3c<=0x16;_0x385d3c++){const _0x2c07c7=_0x385d3c%0xc||0xc,_0x133e43=(_0x385d3c+0x1)%0xc||0xc,_0x3642c9=_0x385d3c<0xc?'AM':'PM',_0x1ddf0f=_0x385d3c+0x1<0xc?'AM':'PM';_0x46e3ca[_0x4fd365(0xfd)]({'start':_0x385d3c+_0x4fd365(0xc0),'end':_0x385d3c+0x1+':00','display':_0x2c07c7+_0x4fd365(0xc8)+_0x3642c9+'\x20-\x20'+_0x133e43+_0x4fd365(0xc8)+_0x1ddf0f});}return _0x46e3ca;},allTimeSlots=generateTimeSlots(),renderTimeSlots=(_0x551c64=[])=>{const _0x4f1537=_0x3e3b22;timeSlotsContainer['innerHTML']='',allTimeSlots[_0x4f1537(0xb9)](_0x9ad7fa=>{const _0x2eaecd=_0x4f1537,_0x48dfb5=_0x551c64[_0x2eaecd(0x109)](_0x9ad7fa[_0x2eaecd(0x10a)]),_0x51ac17=document['createElement'](_0x2eaecd(0xc6));_0x51ac17[_0x2eaecd(0xe2)]=_0x2eaecd(0x10c)+(_0x48dfb5?_0x2eaecd(0x91):''),_0x51ac17[_0x2eaecd(0xbf)]=_0x9ad7fa['display'],_0x51ac17[_0x2eaecd(0xdd)][_0x2eaecd(0x10a)]=_0x9ad7fa[_0x2eaecd(0x10a)],_0x51ac17[_0x2eaecd(0xdd)]['end']=_0x9ad7fa['end'],!_0x48dfb5&&_0x51ac17['addEventListener'](_0x2eaecd(0xc5),()=>{const _0x4c6c5b=_0x2eaecd;document['querySelectorAll'](_0x4c6c5b(0xa9))[_0x4c6c5b(0xb9)](_0x17735e=>{const _0x558406=_0x4c6c5b;_0x17735e[_0x558406(0x94)][_0x558406(0x108)](_0x558406(0x8c));}),_0x51ac17[_0x4c6c5b(0x94)][_0x4c6c5b(0xb6)]('selected'),selectedSlotInput[_0x4c6c5b(0xa7)]=_0x9ad7fa[_0x4c6c5b(0x10a)]+'-'+_0x9ad7fa[_0x4c6c5b(0xbb)];}),timeSlotsContainer[_0x2eaecd(0xcb)](_0x51ac17);});},checkAcademyStatus=async()=>{const _0x35abae=_0x3e3b22;try{const _0x25c400=new Date(),_0x39105d=_0x25c400[_0x35abae(0xb4)]();_0x39105d>=0x5&&_0x39105d<0x17?(academyStatus['className']=_0x35abae(0xc1),academyStatus[_0x35abae(0xb7)]=_0x35abae(0xca)):(academyStatus[_0x35abae(0xe2)]=_0x35abae(0xd8),academyStatus[_0x35abae(0xb7)]='<div\x20class=\x22status-indicator\x22></div><span>Closed\x20-\x20Check\x20Back\x20Tomorrow</span>');}catch(_0x1d126d){console[_0x35abae(0xfc)](_0x35abae(0x8e),_0x1d126d),academyStatus[_0x35abae(0xe2)]='status\x20status-closed',academyStatus[_0x35abae(0xb7)]=_0x35abae(0xe8);}},getBookedSlots=async _0x256c7d=>{const _0x3c174b=_0x3e3b22;try{const _0x1f2e8c=getBookingsFromLocalStorage(),_0x340b0b=_0x1f2e8c[_0x3c174b(0xaa)](_0x18179e=>_0x18179e[_0x3c174b(0xe4)]===_0x256c7d)[_0x3c174b(0xbd)](_0x84650e=>{const _0x3eabfc=_0x3c174b,[_0x473e99]=_0x84650e[_0x3eabfc(0xa0)][_0x3eabfc(0x9c)]('-');return _0x473e99;}),{data:_0x4b54b9,error:_0x26a051}=await supabase[_0x3c174b(0x103)](_0x3c174b(0xfb))['select'](_0x3c174b(0xa0))['eq']('booking_date',_0x256c7d);if(_0x26a051)throw _0x26a051;const _0x5514e0=_0x4b54b9[_0x3c174b(0xbd)](_0x22e7af=>{const _0x5d0ce3=_0x3c174b,[_0x323aa6]=_0x22e7af[_0x5d0ce3(0xa0)][_0x5d0ce3(0x9c)]('-');return _0x323aa6;});return[...new Set([..._0x340b0b,..._0x5514e0])];}catch(_0x42215c){console[_0x3c174b(0xfc)](_0x3c174b(0x8f),_0x42215c);const _0x32a392=getBookingsFromLocalStorage();return _0x32a392[_0x3c174b(0xaa)](_0x2c4e37=>_0x2c4e37[_0x3c174b(0xe4)]===_0x256c7d)[_0x3c174b(0xbd)](_0x2b0a6d=>{const _0x1a3efe=_0x3c174b,[_0x355042]=_0x2b0a6d['time_slot'][_0x1a3efe(0x9c)]('-');return _0x355042;});}};function _0x3783(_0x548429,_0x184a4a){const _0x1724eb=_0x1724();return _0x3783=function(_0x3783f4,_0x5224e9){_0x3783f4=_0x3783f4-0x86;let _0x1413b9=_0x1724eb[_0x3783f4];return _0x1413b9;},_0x3783(_0x548429,_0x184a4a);}dateInput[_0x3e3b22(0x9e)]('change',async()=>{const _0x68f4f3=_0x3e3b22;if(!dateInput[_0x68f4f3(0xa7)])return;submitBtn[_0x68f4f3(0xc3)]=!![],timeSlotsContainer[_0x68f4f3(0xb7)]='<div\x20class=\x22spinner\x22></div>';const _0x30ab38=await getBookedSlots(dateInput[_0x68f4f3(0xa7)]);renderTimeSlots(_0x30ab38),submitBtn[_0x68f4f3(0xc3)]=![];});const showError=_0x52fad6=>{const _0x567608=_0x3e3b22;errorMessage[_0x567608(0xbf)]=_0x52fad6,errorMessage[_0x567608(0xad)][_0x567608(0xd2)]=_0x567608(0xe6),successMessage[_0x567608(0xad)]['display']='none',setTimeout(()=>{errorMessage['style']['display']='none';},0x1388);},showSuccess=_0x506790=>{const _0x5532fe=_0x3e3b22;successMessage[_0x5532fe(0xbf)]=_0x506790,successMessage['style'][_0x5532fe(0xd2)]=_0x5532fe(0xe6),errorMessage['style'][_0x5532fe(0xd2)]=_0x5532fe(0xe1),setTimeout(()=>{const _0x14f211=_0x5532fe;successMessage[_0x14f211(0xad)]['display']=_0x14f211(0xe1);},0x1388);};bookingFormElement[_0x3e3b22(0x9e)]('submit',async _0x7fddaa=>{const _0x17cccc=_0x3e3b22;_0x7fddaa[_0x17cccc(0xc7)]();if(!selectedSlotInput[_0x17cccc(0xa7)]){showError(_0x17cccc(0x10f));return;}if(!bookingTypeInput[_0x17cccc(0xa7)]){showError(_0x17cccc(0xdc));return;}const _0x4f332c=/^[0-9]{10}$/;if(!_0x4f332c[_0x17cccc(0xc9)](mobileInput['value'])){showError('Please\x20enter\x20a\x20valid\x2010-digit\x20mobile\x20number');return;}submitBtn[_0x17cccc(0xc3)]=!![],loadingSpinner['style'][_0x17cccc(0xd2)]=_0x17cccc(0xe6);try{const [_0x19464b,_0x164de2]=selectedSlotInput[_0x17cccc(0xa7)][_0x17cccc(0x9c)]('-'),_0x2bd943=_0x17cccc(0x111)+Date[_0x17cccc(0xa1)]()[_0x17cccc(0xbc)]()['slice'](-0x6),_0x437e2b={'id':_0x2bd943,'name':nameInput[_0x17cccc(0xa7)],'mobile':mobileInput['value'],'booking_date':dateInput[_0x17cccc(0xa7)],'time_slot':selectedSlotInput[_0x17cccc(0xa7)],'start_time':_0x19464b,'end_time':_0x164de2,'type':bookingTypeInput[_0x17cccc(0xa7)],'created_at':new Date()[_0x17cccc(0xcf)]()},{data:_0x1fd7cc,error:_0x35fe3b}=await supabase['from']('bookings')[_0x17cccc(0xec)]([{'name':_0x437e2b[_0x17cccc(0xef)],'mobile':_0x437e2b[_0x17cccc(0xc4)],'booking_date':_0x437e2b[_0x17cccc(0xe4)],'time_slot':_0x437e2b[_0x17cccc(0xa0)],'start_time':_0x437e2b[_0x17cccc(0x95)],'end_time':_0x437e2b['end_time'],'type':_0x437e2b[_0x17cccc(0xdb)],'booking_id':_0x437e2b['id'],'created_at':_0x437e2b[_0x17cccc(0x9b)]}])[_0x17cccc(0x9d)]();if(_0x35fe3b){console[_0x17cccc(0xfc)](_0x17cccc(0xeb),_0x35fe3b);throw new Error(_0x17cccc(0xb1));}saveBookingToLocalStorage(_0x437e2b);const _0x23c533=document[_0x17cccc(0xab)]('popupNotification');_0x23c533[_0x17cccc(0x94)][_0x17cccc(0xb6)]('show'),setTimeout(()=>{const _0x1b9c7a=_0x17cccc;_0x23c533['classList'][_0x1b9c7a(0x108)](_0x1b9c7a(0xd1));},0x1388),confirmName[_0x17cccc(0xbf)]=_0x437e2b[_0x17cccc(0xef)],confirmMobile['textContent']=_0x437e2b[_0x17cccc(0xc4)],confirmDate[_0x17cccc(0xbf)]=new Date(_0x437e2b[_0x17cccc(0xe4)])['toLocaleDateString'](_0x17cccc(0xd4),{'weekday':_0x17cccc(0xb2),'year':'numeric','month':_0x17cccc(0xb2),'day':_0x17cccc(0xb0)});const _0xa65355=allTimeSlots['find'](_0x4a9fba=>_0x4a9fba['start']===_0x19464b)[_0x17cccc(0xd2)];confirmTime['textContent']=_0xa65355,confirmId['textContent']=_0x2bd943;const _0x2ec7dc=_0x437e2b[_0x17cccc(0xdb)]==='normal'?'Normal\x20(1000/=\x20to\x201200/=)':'Full\x20Net\x20(2800/=)';confirmType[_0x17cccc(0xbf)]=_0x2ec7dc,document[_0x17cccc(0x10b)](_0x17cccc(0x9a))[_0x17cccc(0xad)][_0x17cccc(0xd2)]=_0x17cccc(0xe1),document[_0x17cccc(0x10b)](_0x17cccc(0xdf))['style'][_0x17cccc(0xd2)]=_0x17cccc(0xe1),confirmationContainer[_0x17cccc(0xad)]['display']=_0x17cccc(0xe6),confirmationContainer['scrollIntoView']({'behavior':_0x17cccc(0x110)}),showSuccess(_0x17cccc(0x93)),renderBookings();}catch(_0x1bb431){console[_0x17cccc(0xfc)](_0x17cccc(0x8b),_0x1bb431),showError(_0x1bb431[_0x17cccc(0xa8)]||'Failed\x20to\x20create\x20booking.\x20Please\x20try\x20again.');}finally{submitBtn[_0x17cccc(0xc3)]=![],loadingSpinner[_0x17cccc(0xad)][_0x17cccc(0xd2)]='none';}});function renderBookings(){const _0x5f018e=_0x3e3b22,_0x48ce46=document[_0x5f018e(0xab)](_0x5f018e(0xb8)),_0x1e99e6=getBookingsFromLocalStorage();if(_0x1e99e6[_0x5f018e(0x86)]===0x0){_0x48ce46[_0x5f018e(0xb7)]=_0x5f018e(0xd9);return;}_0x48ce46[_0x5f018e(0xb7)]='',_0x1e99e6['forEach'](_0x32867e=>{const _0x562269=_0x5f018e,_0x4b0e65=document[_0x562269(0xd7)](_0x562269(0xc6));_0x4b0e65[_0x562269(0xe2)]='mybooking-card';const _0x38970d=new Date(_0x32867e['booking_date'])[_0x562269(0xc2)](_0x562269(0xd4),{'weekday':'long','year':'numeric','month':_0x562269(0xb2),'day':_0x562269(0xb0)}),_0xda9a05=allTimeSlots['find'](_0x9da87d=>_0x9da87d['start']===_0x32867e['start_time'])?.[_0x562269(0xd2)]||_0x32867e['start_time']+'-'+_0x32867e[_0x562269(0x100)],_0x4cf487=_0x32867e['type']===_0x562269(0x99)?_0x562269(0xf5):_0x562269(0xed);_0x4b0e65[_0x562269(0xb7)]=_0x562269(0xda)+_0x32867e['id']+_0x562269(0xfa)+_0x38970d+_0x562269(0x10e)+_0x32867e['name']+_0x562269(0xd0)+_0x32867e[_0x562269(0xc4)]+_0x562269(0x107)+_0xda9a05+_0x562269(0x10d)+_0x4cf487+_0x562269(0xae),_0x48ce46[_0x562269(0xcb)](_0x4b0e65);});}renderBookings();function saveBookingToLocalStorage(_0x1c8f2a){const _0x4d2347=_0x3e3b22;let _0x379c4e=JSON[_0x4d2347(0x87)](localStorage[_0x4d2347(0x105)](_0x4d2347(0xee))||'[]');_0x379c4e[_0x4d2347(0xfd)](_0x1c8f2a),localStorage[_0x4d2347(0xcd)](_0x4d2347(0xee),JSON[_0x4d2347(0xe7)](_0x379c4e));}function getBookingsFromLocalStorage(){const _0x152b9a=_0x3e3b22;return JSON[_0x152b9a(0x87)](localStorage['getItem'](_0x152b9a(0xee))||'[]');}newBookingBtn[_0x3e3b22(0x9e)]('click',()=>{const _0x332cb1=_0x3e3b22;confirmationContainer[_0x332cb1(0xad)]['display']=_0x332cb1(0xe1),document[_0x332cb1(0x10b)](_0x332cb1(0x9a))[_0x332cb1(0xad)][_0x332cb1(0xd2)]=_0x332cb1(0xe6),document[_0x332cb1(0x10b)](_0x332cb1(0xdf))[_0x332cb1(0xad)][_0x332cb1(0xd2)]=_0x332cb1(0xe6),bookingFormElement[_0x332cb1(0xce)](),selectedSlotInput[_0x332cb1(0xa7)]='',document[_0x332cb1(0x8a)](_0x332cb1(0xa9))[_0x332cb1(0xb9)](_0x2a7b6d=>{const _0x4ac08d=_0x332cb1;_0x2a7b6d[_0x4ac08d(0x94)][_0x4ac08d(0x108)](_0x4ac08d(0x8c));}),document[_0x332cb1(0xab)](_0x332cb1(0xf2))['scrollIntoView']({'behavior':'smooth'});}),window[_0x3e3b22(0x9e)]('scroll',()=>{const _0x4a25db=_0x3e3b22;window[_0x4a25db(0xf7)]>0x32?header[_0x4a25db(0x94)][_0x4a25db(0xb6)]('scrolled'):header[_0x4a25db(0x94)]['remove'](_0x4a25db(0x88));});const revealElements=document[_0x3e3b22(0x8a)](_0x3e3b22(0xf9)),revealOnScroll=()=>{const _0x36e6b4=_0x3e3b22;revealElements[_0x36e6b4(0xb9)](_0x6effdd=>{const _0xf7ef32=_0x36e6b4,_0xeb1978=_0x6effdd[_0xf7ef32(0xa5)]()[_0xf7ef32(0xf4)],_0x5a273e=window[_0xf7ef32(0xd5)];_0xeb1978<_0x5a273e-0x64&&_0x6effdd[_0xf7ef32(0x94)][_0xf7ef32(0xb6)](_0xf7ef32(0x90));});};window['addEventListener'](_0x3e3b22(0xd3),revealOnScroll),window['addEventListener'](_0x3e3b22(0x97),revealOnScroll);const createParticles=()=>{const _0x39b4fb=_0x3e3b22,_0xa6ee77=document[_0x39b4fb(0xab)](_0x39b4fb(0xf8)),_0x46ba96=0x14;for(let _0x49d560=0x0;_0x49d560<_0x46ba96;_0x49d560++){const _0x13c6d9=document['createElement']('div');_0x13c6d9[_0x39b4fb(0x94)][_0x39b4fb(0xb6)](_0x39b4fb(0xf0));const _0x889ff9=Math['random']()*0x4+0x2;_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0xe9)]=_0x889ff9+'px',_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0xb5)]=_0x889ff9+'px',_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0xba)]=Math[_0x39b4fb(0x96)]()*0x64+'%',_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0xf4)]=Math[_0x39b4fb(0x96)]()*0x64+'%';const _0x1b74a3=Math[_0x39b4fb(0x96)]()*0x14+0xa;_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0x104)]=_0x1b74a3+'s',_0x13c6d9[_0x39b4fb(0xad)][_0x39b4fb(0xe0)]=Math[_0x39b4fb(0x96)]()*0x5+'s',_0xa6ee77[_0x39b4fb(0xcb)](_0x13c6d9);}};checkAcademyStatus(),renderTimeSlots(),createParticles();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synergy Sports Academy - Premium Sports Facility Booking</title>
+        <link rel="icon" type="image/png" href="img/favicon.png">
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+    --primary: #3a0ca3;
+    --primary-light: #4cc9f0;
+    --secondary: #7209b7;
+    --accent: #4361ee;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --darker: #121212;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    --gradient-light: linear-gradient(135deg, var(--primary-light), var(--accent));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--darker);
+    color: var(--light);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('img/indoor.png') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(58,12,163,0.3) 0%, rgba(0,0,0,0.8) 70%);
+    animation: pulse 15s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--light);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+    40% { transform: translateY(-20px) translateX(-50%); }
+    60% { transform: translateY(-10px) translateX(-50%); }
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    background: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+header.scrolled {
+    padding: 1rem 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.logo i {
+    margin-right: 0.8rem;
+    font-size: 2rem;
+    color: var(--primary-light);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover i {
+    transform: rotate(360deg);
+}
+
+.logo span {
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-light);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.status {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+}
+
+.status-open .status-indicator {
+    background-color: var(--success);
+    box-shadow: 0 0 10px var(--success);
+}
+
+.status-closed .status-indicator {
+    background-color: var(--danger);
+    box-shadow: 0 0 10px var(--danger);
+}
+
+.status-full .status-indicator {
+    background-color: var(--warning);
+    box-shadow: 0 0 10px var(--warning);
+}
+
+/* About Section */
+.about-section {
+    padding: 6rem 0;
+    background: var(--darker);
+    position: relative;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/indoor2.png') no-repeat center center/cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+    color: white;
+    width: 100%;
+    display: block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.about-text {
+    animation: fadeInLeft 1s ease-out;
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-light);
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    min-height: 200px;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.feature-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-light);
+}
+
+.feature-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.about-image {
+    position: relative;
+    animation: fadeInRight 1s ease-out;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: all 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.about-image::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary-light);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.5;
+    transition: all 0.5s ease;
+}
+
+.about-image:hover::before {
+    top: -15px;
+    left: -15px;
+    opacity: 0.8;
+}
+
+/* Booking Section */
+.booking-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, var(--darker), #0a0a0a);
+    position: relative;
+}
+
+.booking-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/indoor4.avif') no-repeat center center/cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.booking-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.booking-form {
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    transform: translateY(30px);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.form-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    color: white;
+    font-size: 1.1rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+    background: rgba(255,255,255,0.1);
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.btn {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(58,12,163,0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 48px;
+    min-width: 120px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gradient-light);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(58,12,163,0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn i {
+    margin-right: 0.8rem;
+}
+
+.booking-details {
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    transform: translateY(30px);
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards 0.6s;
+}
+
+.details-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.details-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.time-slot {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 500;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-slot:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.time-slot.selected {
+    background: var(--gradient);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(58,12,163,0.4);
+}
+
+.time-slot.booked {
+    background: rgba(247, 37, 133, 0.1);
+    color: rgba(255,255,255,0.3);
+    cursor: not-allowed;
+    position: relative;
+    overflow: hidden;
+}
+
+.time-slot.booked::after {
+    content: 'BOOKED';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--danger);
+    opacity: 0.7;
+    letter-spacing: 2px;
+}
+
+.availability-info {
+    background: rgba(58,12,163,0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(72,149,239,0.2);
+}
+
+.availability-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    color: var(--primary-light);
+    font-size: 1.2rem;
+}
+
+.availability-title i {
+    margin-right: 1rem;
+    color: var(--primary-light);
+    font-size: 1.5rem;
+}
+
+.availability-info ul {
+    list-style: none;
+}
+
+.availability-info li {
+    margin-bottom: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.availability-info li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
+}
+
+.confirmation {
+    display: none;
+    background: rgba(18, 18, 18, 0.9);
+    border-radius: 15px;
+    padding: 4rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.confirmation i {
+    font-size: 5rem;
+    color: var(--success);
+    margin-bottom: 2rem;
+    animation: bounce 1s infinite alternate;
+}
+
+.confirmation h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.confirmation p {
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.confirmation-details {
+    background: rgba(58,12,163,0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    text-align: left;
+    border: 1px solid rgba(72,149,239,0.2);
+}
+
+.confirmation-detail {
+    display: flex;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.9);
+}
+
+.confirmation-detail strong {
+    min-width: 150px;
+    display: inline-block;
+    color: var(--primary-light);
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, #0a0a0a, var(--darker));
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/indoor.png') no-repeat center center/cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info {
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.contact-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.contact-detail i {
+    font-size: 1.5rem;
+    color: var(--primary-light);
+    margin-right: 1.5rem;
+    margin-top: 0.3rem;
+}
+
+.contact-detail-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.contact-detail-content p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.social-links a:hover {
+    background: var(--gradient);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(58,12,163,0.3);
+}
+
+.map-container {
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Loading spinner */
+.spinner {
+    display: none;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    border: 5px solid rgba(72, 149, 239, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--primary-light);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error message */
+.error-message {
+    color: white;
+    background: rgba(247, 37, 133, 0.2);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: none;
+    border: 1px solid rgba(247, 37, 133, 0.3);
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+/* Success message */
+.success-message {
+    color: white;
+    background: rgba(76, 201, 240, 0.2);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: none;
+    border: 1px solid rgba(76, 201, 240, 0.3);
+}
+
+.yunoxa-credit {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.yunoxa-credit i {
+    margin: 0 0.2rem;
+}
+
+select option {
+    background-color: var(--darker);
+    color: white;
+    padding: 10px;
+}
+
+select:focus option:checked {
+    background: var(--gradient);
+    color: white;
+}
+
+/* Calendar/Date Picker Styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    background-color: var(--primary-light);
+    filter: invert(0);
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    color: white;
+    padding: 0.5rem;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    background: transparent;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: white;
+    padding: 0 0.3rem;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: white;
+}
+
+::-webkit-datetime-edit-month-field:focus,
+::-webkit-datetime-edit-day-field:focus,
+::-webkit-datetime-edit-year-field:focus {
+    background-color: var(--primary-light);
+    color: var(--dark);
+    outline: none;
+    border-radius: 4px;
+}
+
+/* For Firefox */
+input[type="date"] {
+    color-scheme: dark;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator {
+    filter: invert(0.8);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+input[type="date"]::-moz-calendar-picker-indicator:hover {
+    background-color: var(--primary-light);
+    filter: invert(0);
+}
+
+/* Footer */
+footer {
+    background: #0a0a0a;
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.footer-logo i {
+    margin-right: 0.8rem;
+    color: var(--primary-light);
+}
+
+.footer-logo span {
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: var(--gradient);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Floating particles */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/* My Bookings Section */
+.mybookings-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, var(--darker), #0a0a0a);
+    position: relative;
+}
+
+.mybookings-container {
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.mybooking-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.mybooking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: var(--primary-light);
+}
+
+.mybooking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mybooking-id {
+    font-weight: 600;
+    color: var(--primary-light);
+}
+
+.mybooking-date {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.mybooking-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.mybooking-detail {
+    margin-bottom: 0.5rem;
+}
+
+.mybooking-detail strong {
+    display: block;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.mybooking-detail span {
+    color: white;
+}
+
+.myno-bookings {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+}
+
+/* Popup Notification */
+.popup-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(76, 201, 240, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.popup-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.popup-notification i {
+    font-size: 1.8rem;
+}
+
+.popup-message {
+    font-weight: 500;
+}
+
+.logo-img {
+    width: 70px;
+    height: 70px;
+    margin-right: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+    transform: rotate(360deg);
+}
+
+/* Footer Logo Container */
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer Logo Image */
+.footer-logo .logo-img {
+    width: 70px;
+    height: 70px;
+    margin-right: 1rem;
+    align-self: center;
+}
+
+/* Footer Logo Text */
+.footer-logo span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+/* Scroll reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+}
+
+/* Mobile Styles */
+@media (max-width: 1024px) {
+    .booking-container, 
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+
+    body {
+        
+           
+            padding-top: 100px;
+            
+        }
+
+    
+    .container {
+        padding: 1rem;
+    }
+    
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image img {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    
+    .booking-form, 
+    .booking-details,
+    .contact-info {
+        padding: 1.5rem;
+    }
+    
+    .time-slots {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+    }
+
+    
+    
+    .nav-links.active {
+        transform: translateY(0);
+    }
+    
+    .status {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .about-section, 
+    .booking-section, 
+    .contact-section,
+    .mybookings-section {
+        padding: 3rem 0;
+    }
+
+    .mybookings-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, var(--darker), #0a0a0a);
+    position: relative;
+}
+
+.mybookings-container {
+    background: rgba(18, 18, 18, 0.8);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.mybooking-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.mybooking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: var(--primary-light);
+}
+
+.mybooking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mybooking-id {
+    font-weight: 600;
+    color: var(--primary-light);
+}
+
+.mybooking-date {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+}
+
+.mybooking-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.mybooking-detail {
+    margin-bottom: 0.5rem;
+}
+
+.mybooking-detail strong {
+    display: block;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.mybooking-detail span {
+    color: white;
+}
+
+.myno-bookings {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+    transform: rotate(360deg);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.logo i {
+    margin-right: 0.8rem;
+    font-size: 2rem;
+    color: var(--primary-light);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover i {
+    transform: rotate(360deg);
+}
+
+.logo span {
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+    
+    .contact-detail {
+        
+        gap: 0.5rem;
+    }
+    
+    .contact-detail i {
+        margin-right: 0;
+        margin-bottom: 0.1rem;
+    }
+    
+    .map-container {
+        height: 300px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-social {
+        gap: 1rem;
+    }
+    
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .confirmation {
+        padding: 2rem;
+    }
+    
+    .confirmation-detail {
+        flex-direction: column;
+    }
+    
+    .confirmation-detail strong {
+        min-width: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer Logo Image */
+.footer-logo .logo-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+    align-self: center;
+}
+
+/* Footer Logo Text */
+.footer-logo span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+}
+
+/* Centered Bottom Popup Notification */
+.popup-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(76, 201, 240, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 90%;
+    text-align: center;
+}
+
+.popup-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-content">
+            <a href="#" class="logo">
+    <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
+    <span>Synergy Sports</span>
+</a>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                
+                <a href="#about">About</a>
+                <a href="#booking">Book Now</a>
+                <a href="#contact">Contact</a>
+                <a href="posts.html" class="active">Posts</a>
+            </div>
+            
+            <div class="status status-open" id="academyStatus">
+                <div class="status-indicator"></div>
+                <span>Open - Bookings Available</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Synergy Sports Academy</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Premium sports indoor facility opening on August 2, 2025</p>
+            <a href="#booking" class="btn animate__animated animate__fadeInUp animate__delay-2s">
+                <i class="fas fa-calendar-alt"></i> Book Your Session
+            </a>
+        </div>
+        <a href="#about" class="scroll-down animate__animated animate__fadeIn animate__delay-3s">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title reveal">About Our Academy</h2>
+            
+            <div class="about-content">
+                <div class="about-text reveal">
+                    <h3>Premium Multi-Sports Facility</h3>
+<p>Synergy Sports is Gampola's premier Multi sports center, offering a world-class playing experience for players of all skill levels. Our state-of-the-art facility opens August 2, 2025 in Mahara, Gampola.</p>
+<p>Versatile setups for competitive matches, casual play, and skill development</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-card reveal" style="transition-delay: 0.1s">
+                            <i class="fas fa-trophy"></i>
+                            <h4>Professional Courts</h4>
+                            <p>High-quality surfaces designed for optimal performance and safety.</p>
+                        </div>
+                        <div class="feature-card reveal" style="transition-delay: 0.2s">
+                            <i class="fas fa-clock"></i>
+                            <h4>Flexible Hours</h4>
+                            <p>Open from 5AM to 11PM to accommodate all schedules.</p>
+                        </div>
+                        <div class="feature-card reveal" style="transition-delay: 0.3s">
+                              <i class="fas fa-futbol"></i>
+                                <h4>Premium Multi Sports Facility</h4>
+                                <p>Professional-grade courts with premium flooring for optimal performance</p>
+                        </div>
+                        <div class="feature-card reveal" style="transition-delay: 0.4s">
+                            <i class="fas fa-medal"></i>
+                            <h4>Competition Ready</h4>
+                            <p>Facilities designed to meet official competition standards.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image reveal">
+                    <img src="img/indoor3.png" alt="Synergy Sports Academy Court">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Bookings Section -->
+<section class="mybookings-section" id="my-bookings">
+    <div class="container">
+        <h2 class="section-title reveal">My Bookings</h2>
+        
+        <div class="mybookings-container reveal">
+            <div class="mybookings-list" id="bookingsList">
+                <!-- Bookings will be loaded here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <h2 class="section-title reveal">Book Your Session</h2>
+            
+            <div class="booking-container">
+                <div class="booking-form reveal">
+                    <h2 class="form-title">Session Details</h2>
+                    
+                    <div class="error-message" id="errorMessage"></div>
+                    <div class="success-message" id="successMessage"></div>
+                    
+                    <form id="bookingFormElement">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookingType">Session Type</label>
+                            <select id="bookingType" name="bookingType" required>
+                                <option value="">Select session type</option>
+                                <option value="normal">Normal (1000/= to 1200/=)</option>
+                                <option value="fullnet">Full Net (2800/=)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Booking Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Select Time Slot</label>
+                            <input type="hidden" id="selectedSlot" name="selectedSlot" required>
+                            <div class="time-slots" id="timeSlots">
+                                <!-- Time slots will be generated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-calendar-check"></i> Confirm Booking
+                        </button>
+                        
+                        <div class="spinner" id="loadingSpinner"></div>
+                    </form>
+                </div>
+                
+                <div class="booking-details reveal">
+                    <h2 class="details-title">Availability</h2>
+                    <p>Select a date to see available time slots</p>
+                    
+                    <div class="availability-info">
+                        <h3 class="availability-title"><i class="fas fa-info-circle"></i> Booking Information</h3>
+                        <ul>
+                            <li>Opening Date: August 2, 2025</li>
+                            <li>Location: 294, Mahara, Gampola</li>
+                            <li>Contact: 0701295479</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section (hidden by default) -->
+    <div class="container" id="confirmationContainer" style="display: none;">
+        <div class="confirmation">
+            <i class="fas fa-check-circle"></i>
+            <h2>Booking Confirmed!</h2>
+            <p>Your session has been successfully booked at Synergy Sports Academy. We've sent the details to your mobile number.</p>
+            
+            <div class="confirmation-details">
+                <div class="confirmation-detail">
+                    <strong>Name:</strong>
+                    <span id="confirmName"></span>
+                </div>
+                <div class="confirmation-detail">
+                    <strong>Mobile:</strong>
+                    <span id="confirmMobile"></span>
+                </div>
+                <div class="confirmation-detail">
+                    <strong>Date:</strong>
+                    <span id="confirmDate"></span>
+                </div>
+                <div class="confirmation-detail">
+                    <strong>Time Slot:</strong>
+                    <span id="confirmTime"></span>
+                </div>
+                <div class="confirmation-detail">
+                    <strong>Booking ID:</strong>
+                    <span id="confirmId"></span>
+                </div>
+                <div class="confirmation-detail">
+                    <strong>Session Type:</strong>
+                    <span id="confirmType"></span>
+                </div>
+            </div>
+            
+            <button class="btn" id="newBookingBtn">
+                <i class="fas fa-plus"></i> Make Another Booking
+            </button>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Contact Us</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info reveal">
+                    <h3>Get In Touch</h3>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-detail-content">
+                            <h4>Location</h4>
+                            <p>294, Mahara, Gampola</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="contact-detail-content">
+                            <h4>Phone</h4>
+                            <p>0701295479</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-detail-content">
+                            <h4>Email</h4>
+                            <p>contactsynergyservices@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-detail-content">
+                            <h4>Opening Hours</h4>
+                            <p>5:00 AM - 11:00 PM Daily<br>Opening On August 2, 2025</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/p/DMiXjHMypuRmcr2Gk5Qqi-eIHYn3vtD6lTpFv80/?igsh=aGlyeW00a28zNWhp"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/94701295479"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.tiktok.com/@dinethabeyrathna?_t=ZS-8yM3jNPcAyY&_r=1"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="map-container reveal">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31660.01585024138!2d80.56458346977539!3d7.164999999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae371d25c4d3ff9%3A0x7a1b8e3b4a3b3b3b!2sGampola!5e0!3m2!1sen!2slk!4v1620000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Popup Notification -->
+<div class="popup-notification" id="popupNotification">
+    <div class="popup-content">
+        <i class="fas fa-check-circle"></i>
+        <div class="popup-message">Booking synced to server successfully!</div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+    <div class="footer-logo-container">
+        <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
+        <span>Synergy Sports</span>
+    </div>
+</div>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#booking">Book Now</a>
+                <a href="#contact">Contact</a>
+                <a href="posts.html">Posts</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/p/DMiXjHMypuRmcr2Gk5Qqi-eIHYn3vtD6lTpFv80/?igsh=aGlyeW00a28zNWhp"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/94701295479"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.tiktok.com/@dinethabeyrathna?_t=ZS-8yM3jNPcAyY&_r=1"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Synergy Sports Academy. All rights reserved.
+            </div>
+            <div class="yunoxa-credit">
+                Made with</i>  Yunoxa
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+        // Initialize Supabase
+        const supabaseUrl = 'https://pjizlsqsoabenusktozx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqaXpsc3Fzb2FiZW51c2t0b3p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzMDMsImV4cCI6MjA2ODg5MTMwM30.-io9iSz6H9DhCN_esvmcX_RjlJAkd9mpa_ujhNoTrZ8';
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // DOM elements
+        const bookingFormElement = document.getElementById('bookingFormElement');
+        const nameInput = document.getElementById('name');
+        const mobileInput = document.getElementById('mobile');
+        const dateInput = document.getElementById('date');
+        const selectedSlotInput = document.getElementById('selectedSlot');
+        const timeSlotsContainer = document.getElementById('timeSlots');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const academyStatus = document.getElementById('academyStatus');
+        const confirmationContainer = document.getElementById('confirmationContainer');
+        const newBookingBtn = document.getElementById('newBookingBtn');
+        const bookingTypeInput = document.getElementById('bookingType');
+        const header = document.getElementById('header');
+
+        // Confirmation elements
+        const confirmName = document.getElementById('confirmName');
+        const confirmMobile = document.getElementById('confirmMobile');
+        const confirmDate = document.getElementById('confirmDate');
+        const confirmTime = document.getElementById('confirmTime');
+        const confirmId = document.getElementById('confirmId');
+        const confirmType = document.getElementById('confirmType');
+
+        // Set minimum date (today)
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear();
+        dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+        // Generate time slots (5am to 11pm with 1-hour intervals)
+        const generateTimeSlots = () => {
+            const slots = [];
+            for (let hour = 5; hour <= 22; hour++) {
+                const startHour = hour % 12 || 12;
+                const endHour = (hour + 1) % 12 || 12;
+                const ampmStart = hour < 12 ? 'AM' : 'PM';
+                const ampmEnd = (hour + 1) < 12 ? 'AM' : 'PM';
+                
+                slots.push({
+                    start: `${hour}:00`,
+                    end: `${hour + 1}:00`,
+                    display: `${startHour}:00 ${ampmStart} - ${endHour}:00 ${ampmEnd}`
+                });
+            }
+            return slots;
+        };
+
+        const allTimeSlots = generateTimeSlots();
+
+        // Render time slots
+        const renderTimeSlots = (bookedSlots = []) => {
+            timeSlotsContainer.innerHTML = '';
+            
+            allTimeSlots.forEach(slot => {
+                const isBooked = bookedSlots.includes(slot.start);
+                const slotElement = document.createElement('div');
+                slotElement.className = `time-slot ${isBooked ? 'booked' : ''}`;
+                slotElement.textContent = slot.display;
+                slotElement.dataset.start = slot.start;
+                slotElement.dataset.end = slot.end;
+                
+                if (!isBooked) {
+                    slotElement.addEventListener('click', () => {
+                        // Remove selected class from all slots
+                        document.querySelectorAll('.time-slot').forEach(el => {
+                            el.classList.remove('selected');
+                        });
+                        
+                        // Add selected class to clicked slot
+                        slotElement.classList.add('selected');
+                        selectedSlotInput.value = `${slot.start}-${slot.end}`;
+                    });
+                }
+                
+                timeSlotsContainer.appendChild(slotElement);
+            });
+        };
+
+        // Sync local bookings with Supabase
+
+
+        // Check academy status
+        const checkAcademyStatus = async () => {
+            try {
+                // Get current time
+                const now = new Date();
+                const currentHour = now.getHours();
+                
+                // Academy is open from 5AM to 11PM
+                if (currentHour >= 5 && currentHour < 23) {
+                    academyStatus.className = 'status status-open';
+                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Open - Bookings Available</span>';
+                } else {
+                    academyStatus.className = 'status status-closed';
+                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Closed - Check Back Tomorrow</span>';
+                }
+            } catch (error) {
+                console.error('Error checking academy status:', error);
+                academyStatus.className = 'status status-closed';
+                academyStatus.innerHTML = '<div class="status-indicator"></div><span>Status Unavailable</span>';
+            }
+        };
+
+        // Get booked slots for selected date
+        // Get booked slots for selected date
+const getBookedSlots = async (date) => {
+    try {
+        // First check local storage
+        const localBookings = getBookingsFromLocalStorage();
+        const localSlots = localBookings
+            .filter(booking => booking.booking_date === date)
+            .map(booking => {
+                const [start] = booking.time_slot.split('-');
+                return start;
+            });
+        
+        // Then check Supabase
+        const { data, error } = await supabase
+            .from('bookings')
+            .select('time_slot')
+            .eq('booking_date', date);
+        
+        if (error) throw error;
+        
+        const supabaseSlots = data.map(booking => {
+            const [start] = booking.time_slot.split('-');
+            return start;
+        });
+        
+        // Combine and deduplicate
+        return [...new Set([...localSlots, ...supabaseSlots])];
+    } catch (error) {
+        console.error('Error fetching booked slots:', error);
+        // Fallback to just local storage if Supabase fails
+        const localBookings = getBookingsFromLocalStorage();
+        return localBookings
+            .filter(booking => booking.booking_date === date)
+            .map(booking => {
+                const [start] = booking.time_slot.split('-');
+                return start;
+            });
+    }
+};
+
+        // Handle date change
+        dateInput.addEventListener('change', async () => {
+            if (!dateInput.value) return;
+            
+            submitBtn.disabled = true;
+            timeSlotsContainer.innerHTML = '<div class="spinner"></div>';
+            
+            const bookedSlots = await getBookedSlots(dateInput.value);
+            renderTimeSlots(bookedSlots);
+            
+            submitBtn.disabled = false;
+        });
+
+        // Show error message
+        const showError = (message) => {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        };
+
+        // Show success message
+        const showSuccess = (message) => {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+            
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        };
+
+       // Handle form submission
+// Handle form submission
+bookingFormElement.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (!selectedSlotInput.value) {
+        showError('Please select a time slot');
+        return;
+    }
+    
+    if (!bookingTypeInput.value) {
+        showError('Please select a session type');
+        return;
+    }
+    
+    // Validate mobile number
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobileInput.value)) {
+        showError('Please enter a valid 10-digit mobile number');
+        return;
+    }
+    
+    submitBtn.disabled = true;
+    loadingSpinner.style.display = 'block';
+    
+    try {
+        const [startTime, endTime] = selectedSlotInput.value.split('-');
+        
+        // Generate a unique booking ID
+        const bookingId = 'SYN-' + Date.now().toString().slice(-6);
+        
+        // Create booking object
+        const booking = {
+            id: bookingId,
+            name: nameInput.value,
+            mobile: mobileInput.value,
+            booking_date: dateInput.value,
+            time_slot: selectedSlotInput.value,
+            start_time: startTime,
+            end_time: endTime,
+            type: bookingTypeInput.value,
+            created_at: new Date().toISOString()
+        };
+        
+        // FIRST try to upload to Supabase
+        const { data, error } = await supabase
+            .from('bookings')
+            .insert([
+                {
+                    name: booking.name,
+                    mobile: booking.mobile,
+                    booking_date: booking.booking_date,
+                    time_slot: booking.time_slot,
+                    start_time: booking.start_time,
+                    end_time: booking.end_time,
+                    type: booking.type,
+                    booking_id: booking.id,
+                    created_at: booking.created_at
+                }
+            ])
+            .select();
+        
+        if (error) {
+            console.error('Supabase upload error:', error);
+            throw new Error('Failed to upload booking to server. Please try again.');
+        }
+        
+        // Only save to local storage if Supabase upload succeeds
+        saveBookingToLocalStorage(booking);
+        
+        // Show popup notification for successful Supabase upload
+        const popup = document.getElementById('popupNotification');
+        popup.classList.add('show');
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 5000);
+        
+        // Show confirmation
+        confirmName.textContent = booking.name;
+        confirmMobile.textContent = booking.mobile;
+        confirmDate.textContent = new Date(booking.booking_date).toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        
+        const slotDisplay = allTimeSlots.find(slot => slot.start === startTime).display;
+        confirmTime.textContent = slotDisplay;
+        confirmId.textContent = bookingId;
+        
+        // Add type to confirmation details
+        const typeDisplay = booking.type === 'normal' 
+            ? 'Normal (1000/= to 1200/=)' 
+            : 'Full Net (2800/=)';
+        confirmType.textContent = typeDisplay;
+        
+        document.querySelector('.booking-form').style.display = 'none';
+        document.querySelector('.booking-details').style.display = 'none';
+        confirmationContainer.style.display = 'block';
+        
+        // Scroll to confirmation
+        confirmationContainer.scrollIntoView({ behavior: 'smooth' });
+        
+        // Show success message
+        showSuccess('Booking confirmed successfully!');
+        
+        // Refresh bookings list
+        renderBookings();
+        
+    } catch (error) {
+        console.error('Error creating booking:', error);
+        showError(error.message || 'Failed to create booking. Please try again.');
+    } finally {
+        submitBtn.disabled = false;
+        loadingSpinner.style.display = 'none';
+    }
+});
+
+// Function to render bookings
+function renderBookings() {
+    const bookingsList = document.getElementById('bookingsList');
+    const bookings = getBookingsFromLocalStorage();
+    
+    if (bookings.length === 0) {
+        bookingsList.innerHTML = '<div class="myno-bookings">You have no bookings yet. Book a session to get started!</div>';
+        return;
+    }
+    
+    bookingsList.innerHTML = '';
+    
+    bookings.forEach(booking => {
+        const bookingCard = document.createElement('div');
+        bookingCard.className = 'mybooking-card';
+        
+        const formattedDate = new Date(booking.booking_date).toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        
+        const slotDisplay = allTimeSlots.find(slot => slot.start === booking.start_time)?.display || `${booking.start_time}-${booking.end_time}`;
+        
+        const typeDisplay = booking.type === 'normal' 
+            ? 'Normal (1000/= to 1200/=)' 
+            : 'Full Net (2800/=)';
+        
+        bookingCard.innerHTML = `
+            <div class="mybooking-header">
+                <div class="mybooking-id">${booking.id}</div>
+                <div class="mybooking-date">${formattedDate}</div>
+            </div>
+            <div class="mybooking-details">
+                <div class="mybooking-detail">
+                    <strong>Name</strong>
+                    <span>${booking.name}</span>
+                </div>
+                <div class="mybooking-detail">
+                    <strong>Mobile</strong>
+                    <span>${booking.mobile}</span>
+                </div>
+                <div class="mybooking-detail">
+                    <strong>Time Slot</strong>
+                    <span>${slotDisplay}</span>
+                </div>
+                <div class="mybooking-detail">
+                    <strong>Session Type</strong>
+                    <span>${typeDisplay}</span>
+                </div>
+            </div>
+        `;
+        
+        bookingsList.appendChild(bookingCard);
+    });
+}
+
+// Add this to your initialization code at the bottom
+renderBookings();
+
+// Save booking to local storage
+function saveBookingToLocalStorage(booking) {
+    let bookings = JSON.parse(localStorage.getItem('synergyBookings') || '[]');
+    bookings.push(booking);
+    localStorage.setItem('synergyBookings', JSON.stringify(bookings));
+}
+
+// Get bookings from local storage
+function getBookingsFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('synergyBookings') || '[]');
+}
+
+        // Handle new booking button
+        newBookingBtn.addEventListener('click', () => {
+            confirmationContainer.style.display = 'none';
+            document.querySelector('.booking-form').style.display = 'block';
+            document.querySelector('.booking-details').style.display = 'block';
+            
+            // Reset form
+            bookingFormElement.reset();
+            selectedSlotInput.value = '';
+            document.querySelectorAll('.time-slot').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Scroll to form
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Create floating particles
+        const createParticles = () => {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        };
+
+        // Initialize
+        checkAcademyStatus();
+        renderTimeSlots();
+        createParticles();
+    </script>
+</body>
+</html>
