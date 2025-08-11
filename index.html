@@ -1855,7 +1855,7 @@ footer {
                         <div class="feature-card reveal" style="transition-delay: 0.2s">
                             <i class="fas fa-clock"></i>
                             <h4>Flexible Hours</h4>
-                            <p>Open from 5AM to 11PM to accommodate all schedules.</p>
+                            <p>Open from 05:00 to 00:00 to accommodate all schedules.</p>
                         </div>
                         <div class="feature-card reveal" style="transition-delay: 0.3s">
                               <i class="fas fa-futbol"></i>
@@ -2043,12 +2043,12 @@ footer {
                     </div>
                     
                     <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div class="contact-detail-content">
-                            <h4>Opening Hours</h4>
-                            <p>5:00 AM - 11:00 PM Daily<br>Opened on August 2, 2025</p>
-                        </div>
-                    </div>
+    <i class="fas fa-clock"></i>
+    <div class="contact-detail-content">
+        <h4>Opening Hours</h4>
+        <p>5:00 AM - 12:00 AM Daily<br>Opened on August 2, 2025</p>
+    </div>
+</div>
                     
                     <div class="social-links">
                         <a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a>
@@ -2147,21 +2147,16 @@ footer {
 
         // Generate time slots (5am to 11pm with 1-hour intervals)
         const generateTimeSlots = () => {
-            const slots = [];
-            for (let hour = 5; hour <= 22; hour++) {
-                const startHour = hour % 12 || 12;
-                const endHour = (hour + 1) % 12 || 12;
-                const ampmStart = hour < 12 ? 'AM' : 'PM';
-                const ampmEnd = (hour + 1) < 12 ? 'AM' : 'PM';
-                
-                slots.push({
-                    start: `${hour}:00`,
-                    end: `${hour + 1}:00`,
-                    display: `${startHour}:00 ${ampmStart} - ${endHour}:00 ${ampmEnd}`
-                });
-            }
-            return slots;
-        };
+    const slots = [];
+    for (let hour = 5; hour <= 23; hour++) {
+        slots.push({
+            start: `${hour}:00`,
+            end: `${hour === 23 ? '0' : hour + 1}:00`,  // Use '0' for midnight
+            display: `${hour}:00 - ${hour === 23 ? '00:00' : hour + 1 + ':00'}`
+        });
+    }
+    return slots;
+};
 
         const allTimeSlots = generateTimeSlots();
 
@@ -2199,25 +2194,25 @@ footer {
 
         // Check academy status
         const checkAcademyStatus = async () => {
-            try {
-                // Get current time
-                const now = new Date();
-                const currentHour = now.getHours();
-                
-                // Academy is open from 5AM to 11PM
-                if (currentHour >= 5 && currentHour < 23) {
-                    academyStatus.className = 'status status-open';
-                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Open - Bookings Available</span>';
-                } else {
-                    academyStatus.className = 'status status-closed';
-                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Closed - Check Back Tomorrow</span>';
-                }
-            } catch (error) {
-                console.error('Error checking academy status:', error);
-                academyStatus.className = 'status status-closed';
-                academyStatus.innerHTML = '<div class="status-indicator"></div><span>Status Unavailable</span>';
-            }
-        };
+    try {
+        // Get current time
+        const now = new Date();
+        const currentHour = now.getHours();
+        
+        // Academy is open from 5AM to midnight (0)
+        if (currentHour >= 5 || currentHour < 0) {  // Modified condition
+            academyStatus.className = 'status status-open';
+            academyStatus.innerHTML = '<div class="status-indicator"></div><span>Open - Bookings Available</span>';
+        } else {
+            academyStatus.className = 'status status-closed';
+            academyStatus.innerHTML = '<div class="status-indicator"></div><span>Closed - Check Back Tomorrow</span>';
+        }
+    } catch (error) {
+        console.error('Error checking academy status:', error);
+        academyStatus.className = 'status status-closed';
+        academyStatus.innerHTML = '<div class="status-indicator"></div><span>Status Unavailable</span>';
+    }
+};
 
         // Get booked slots for selected date
         // Get booked slots for selected date
@@ -2225,7 +2220,6 @@ footer {
 // Get booked slots for selected date
 const getBookedSlots = async (date) => {
     try {
-        // Get bookings from both local storage and Supabase
         const localBookings = getBookingsFromLocalStorage();
         const { data: supabaseBookings, error } = await supabase
             .from('bookings')
@@ -2234,40 +2228,42 @@ const getBookedSlots = async (date) => {
         
         if (error) throw error;
         
-        // Combine all bookings
         const allBookings = [
             ...localBookings.filter(b => b.booking_date === date),
             ...supabaseBookings
         ];
         
-        // Extract all booked hours from time ranges
         const bookedHours = new Set();
         
         allBookings.forEach(booking => {
             const [start, end] = booking.time_slot.split('-');
             const startHour = parseInt(start.split(':')[0]);
-            const endHour = parseInt(end.split(':')[0]);
+            let endHour = parseInt(end.split(':')[0]);
             
-            // Add all hours in the range to the set
+            // Handle midnight (0) as 24 for calculation purposes
+            if (endHour === 0) endHour = 24;
+            
             for (let hour = startHour; hour < endHour; hour++) {
-                bookedHours.add(`${hour}:00`);
+                const displayHour = hour > 23 ? 0 : hour; // Convert back to 0 for display
+                bookedHours.add(`${displayHour}:00`);
             }
         });
         
         return Array.from(bookedHours);
     } catch (error) {
         console.error('Error fetching booked slots:', error);
-        // Fallback to local storage if Supabase fails
         const localBookings = getBookingsFromLocalStorage();
         return localBookings
             .filter(booking => booking.booking_date === date)
             .flatMap(booking => {
                 const [start, end] = booking.time_slot.split('-');
                 const startHour = parseInt(start.split(':')[0]);
-                const endHour = parseInt(end.split(':')[0]);
+                let endHour = parseInt(end.split(':')[0]);
+                if (endHour === 0) endHour = 24;
                 const hours = [];
                 for (let hour = startHour; hour < endHour; hour++) {
-                    hours.push(`${hour}:00`);
+                    const displayHour = hour > 23 ? 0 : hour;
+                    hours.push(`${displayHour}:00`);
                 }
                 return hours;
             });
@@ -2391,13 +2387,8 @@ bookingFormElement.addEventListener('submit', async (e) => {
 const validation = await validateTimeRange(date, startTime, endTime);
 if (!validation.valid) {
     const conflictStart = parseInt(validation.conflict.split(':')[0]);
-    const conflictEnd = parseInt(validation.conflictRange.split('-')[1].split(':')[0]);
-    const startDisplay = conflictStart % 12 || 12;
-    const startAmPm = conflictStart < 12 ? 'AM' : 'PM';
-    const endDisplay = conflictEnd % 12 || 12;
-    const endAmPm = conflictEnd < 12 ? 'AM' : 'PM';
-    
-    showError(`${startDisplay}:00 ${startAmPm} - ${endDisplay}:00 ${endAmPm} is already booked. Please select a different time range.`);
+const conflictEnd = parseInt(validation.conflictRange.split('-')[1].split(':')[0]);
+showError(`${conflictStart}:00 - ${conflictEnd}:00 is already booked. Please select a different time range.`);
     return;
 }
 
@@ -2464,12 +2455,8 @@ if (!validation.valid) {
         
         // Format time slot for display
         const startHour = parseInt(startTime.split(':')[0]);
-        const endHour = parseInt(endTime.split(':')[0]);
-        const startDisplay = startHour % 12 || 12;
-        const startAmPm = startHour < 12 ? 'AM' : 'PM';
-        const endDisplay = endHour % 12 || 12;
-        const endAmPm = endHour < 12 ? 'AM' : 'PM';
-        const timeSlotDisplay = `${startDisplay}:00 ${startAmPm} - ${endDisplay}:00 ${endAmPm}`;
+const endHour = parseInt(endTime.split(':')[0]);
+const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
         
         // Show confirmation
         confirmName.textContent = booking.name;
@@ -2518,13 +2505,13 @@ if (!validation.valid) {
 // Generate time options (5am to 11pm with 1-hour intervals)
 const generateTimeOptions = () => {
     const options = [];
-    for (let hour = 5; hour <= 22; hour++) {
-        const displayHour = hour % 12 || 12;
-        const ampm = hour < 12 ? 'AM' : 'PM';
+    for (let hour = 5; hour <= 23; hour++) {  // Changed from 22 to 23
         const value = `${hour}:00`;
-        const display = `${displayHour}:00 ${ampm}`;
+        const display = `${hour}:00`;
         options.push({ value, display });
     }
+    // Add midnight option
+    options.push({ value: '0:00', display: '00:00' });
     return options;
 };
 // Initialize the booking system
@@ -2692,15 +2679,13 @@ document.getElementById('startTime').addEventListener('change', function() {
 
 // Function to show booked slots for next 7 days
 // Function to show booked slots for next 7 days
+// Function to show booked slots for next 7 days
 const showNext7DaysBookedSlots = async () => {
     const today = new Date();
     const bookingsContainer = document.querySelector('.booking-details');
     
-    // Clear previous content and add ID for navigation
     bookingsContainer.innerHTML = '';
    
-    
-    // Add the title
     const title = document.createElement('h2');
     title.className = 'details-title';
     title.textContent = 'Upcoming Booked Slots';
@@ -2717,7 +2702,6 @@ const showNext7DaysBookedSlots = async () => {
             day: 'numeric' 
         });
         
-        // Get all bookings for this date
         const bookings = await getBookingsForDate(dateString);
         
         if (bookings.length > 0) {
@@ -2727,26 +2711,20 @@ const showNext7DaysBookedSlots = async () => {
             dateHeader.style.color = 'var(--primary-light)';
             bookingsContainer.appendChild(dateHeader);
             
-            
             const slotsList = document.createElement('div');
             slotsList.className = 'booked-slots-list';
 
-            
-            
-            // Display each booking as a complete range
             bookings.forEach(booking => {
                 const [start, end] = booking.time_slot.split('-');
-                const startHour = parseInt(start.split(':')[0]);
-                const endHour = parseInt(end.split(':')[0]);
+                let startHour = parseInt(start.split(':')[0]);
+                let endHour = parseInt(end.split(':')[0]);
                 
-                const startDisplay = startHour % 12 || 12;
-                const startAmPm = startHour < 12 ? 'AM' : 'PM';
-                const endDisplay = endHour % 12 || 12;
-                const endAmPm = endHour < 12 ? 'AM' : 'PM';
+                // Handle midnight display
+                const endDisplay = endHour === 0 ? '00:00' : `${endHour}:00`;
                 
                 const slotElement = document.createElement('div');
                 slotElement.className = 'booked-slot';
-                slotElement.textContent = `${startDisplay}:00 ${startAmPm} - ${endDisplay}:00 ${endAmPm}`;
+                slotElement.textContent = `${startHour}:00 - ${endDisplay}`;
                 slotsList.appendChild(slotElement);
             });
             
@@ -2763,12 +2741,9 @@ const showNext7DaysBookedSlots = async () => {
 
 
 // Helper function to get complete bookings for a date
+// Helper function to get bookings for a date (only from Supabase)
 const getBookingsForDate = async (date) => {
     try {
-        // Get from both local storage and Supabase
-        const localBookings = getBookingsFromLocalStorage()
-            .filter(b => b.booking_date === date);
-        
         const { data: supabaseBookings, error } = await supabase
             .from('bookings')
             .select('*')
@@ -2776,11 +2751,10 @@ const getBookingsForDate = async (date) => {
         
         if (error) throw error;
         
-        return [...localBookings, ...supabaseBookings];
+        return supabaseBookings || [];
     } catch (error) {
         console.error('Error fetching bookings:', error);
-        return getBookingsFromLocalStorage()
-            .filter(b => b.booking_date === date);
+        return []; // Return empty array if there's an error
     }
 };
 
@@ -2789,14 +2763,19 @@ const validateTimeRange = async (date, startTime, endTime) => {
     const bookings = await getBookingsForDate(date);
     if (bookings.length === 0) return { valid: true };
     
-    const startHour = parseInt(startTime.split(':')[0]);
-    const endHour = parseInt(endTime.split(':')[0]);
+    let startHour = parseInt(startTime.split(':')[0]);
+    let endHour = parseInt(endTime.split(':')[0]);
+    
+    // Handle midnight (0) as 24 for comparison
+    if (endHour === 0) endHour = 24;
     
     // Check against all existing bookings
     for (const booking of bookings) {
         const [existingStart, existingEnd] = booking.time_slot.split('-');
-        const existingStartHour = parseInt(existingStart.split(':')[0]);
-        const existingEndHour = parseInt(existingEnd.split(':')[0]);
+        let existingStartHour = parseInt(existingStart.split(':')[0]);
+        let existingEndHour = parseInt(existingEnd.split(':')[0]);
+        
+        if (existingEndHour === 0) existingEndHour = 24;
         
         // Check for overlap
         if (
@@ -2804,17 +2783,18 @@ const validateTimeRange = async (date, startTime, endTime) => {
             (endHour > existingStartHour && endHour <= existingEndHour) ||
             (startHour <= existingStartHour && endHour >= existingEndHour)
         ) {
+            const conflictStart = existingStartHour > 23 ? 0 : existingStartHour;
+            const conflictEnd = existingEndHour > 23 ? 0 : existingEndHour;
             return {
                 valid: false,
                 conflict: existingStart,
-                conflictRange: `${existingStartHour}:00-${existingEndHour}:00`
+                conflictRange: `${conflictStart}:00-${conflictEnd}:00`
             };
         }
     }
     
     return { valid: true };
 };
-
 
 
 // Function to render bookings
@@ -2845,11 +2825,7 @@ function renderBookings() {
         const startHour = parseInt(start.split(':')[0]);
         const endHour = parseInt(end.split(':')[0]);
         
-        const startDisplay = startHour % 12 || 12;
-        const startAmPm = startHour < 12 ? 'AM' : 'PM';
-        const endDisplay = endHour % 12 || 12;
-        const endAmPm = endHour < 12 ? 'AM' : 'PM';
-        const timeSlotDisplay = `${startDisplay}:00 ${startAmPm} - ${endDisplay}:00 ${endAmPm}`;
+        const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
         
         const typeDisplay = booking.type === 'normal' 
             ? `Normal (${booking.price} LKR)` 
