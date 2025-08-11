@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2145,19 +2146,19 @@ footer {
         const yyyy = today.getFullYear();
         dateInput.min = `${yyyy}-${mm}-${dd}`;
 
-        // Generate time slots (5am to 11pm with 1-hour intervals)
         const generateTimeSlots = () => {
     const slots = [];
     for (let hour = 5; hour <= 23; hour++) {
+        const nextHour = hour === 23 ? 0 : hour + 1;
+        const formattedNextHour = nextHour < 10 ? `0${nextHour}` : nextHour;
         slots.push({
             start: `${hour}:00`,
-            end: `${hour === 23 ? '0' : hour + 1}:00`,  // Use '0' for midnight
-            display: `${hour}:00 - ${hour === 23 ? '00:00' : hour + 1 + ':00'}`
+            end: `${formattedNextHour}:00`,  // Ensures "00:00" instead of "0:00"
+            display: `${hour}:00 - ${formattedNextHour}:00`
         });
     }
     return slots;
 };
-
         const allTimeSlots = generateTimeSlots();
 
         // Render time slots
@@ -2505,13 +2506,15 @@ const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
 // Generate time options (5am to 11pm with 1-hour intervals)
 const generateTimeOptions = () => {
     const options = [];
-    for (let hour = 5; hour <= 23; hour++) {  // Changed from 22 to 23
-        const value = `${hour}:00`;
-        const display = `${hour}:00`;
-        options.push({ value, display });
+    for (let hour = 5; hour <= 23; hour++) {
+        const formattedHour = hour.toString().padStart(2, '0'); // "05", "23"
+        options.push({
+            value: `${formattedHour}:00`,
+            display: `${formattedHour}:00`
+        });
     }
-    // Add midnight option
-    options.push({ value: '0:00', display: '00:00' });
+    // Add midnight (consistent formatting)
+    options.push({ value: "00:00", display: "00:00" });
     return options;
 };
 // Initialize the booking system
