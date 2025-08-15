@@ -671,13 +671,7 @@ input::placeholder {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.time-slot.selected {
-    background: var(--gradient);
-    color: white;
-    border-color: transparent;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(58,12,163,0.4);
-}
+
 
 .time-slot.booked {
     background: rgba(247, 37, 133, 0.1);
@@ -686,6 +680,8 @@ input::placeholder {
     position: relative;
     overflow: hidden;
 }
+
+
 
 .time-slot.booked::after {
     content: 'BOOKED';
@@ -924,6 +920,25 @@ input::placeholder {
     height: 100%;
     border: none;
 }
+
+.booking-status {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        margin-left: 0.5rem;
+    }
+    
+    .upcoming .booking-status {
+        background-color: rgba(29, 252, 0, 0.308);
+        color: white;
+        border: 1px solid rgba(29, 252, 0, 0.308);
+    }
+    
+    .past .booking-status {
+        background-color: rgba(116, 0, 0, 0.425);
+        color: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(131, 0, 0, 0.2);
+    }
 
 /* Loading spinner */
 .spinner {
@@ -1447,6 +1462,8 @@ footer {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
+
+    
     
     .about-section, 
     .booking-section, 
@@ -1776,6 +1793,35 @@ footer {
     scroll-margin-top: 100px; /* Add this line to account for fixed header */
 }
 
+
+.time-slot {
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.time-slot.selected {
+    background: var(--gradient);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(58,12,163,0.4);
+    z-index: 2;
+}
+
+.time-slot.selected + .time-slot.selected {
+    margin-left: -1px;
+}
+
+.time-slot:not(.booked):hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+.time-slot:not(.booked):not(.disabled) {
+    cursor: pointer;
+}
+
+
     </style>
 </head>
 <body>
@@ -1918,8 +1964,8 @@ footer {
                             <label for="bookingType">Session Type</label>
                             <select id="bookingType" name="bookingType" required>
                                 <option value="">Select session type</option>
-                                <option value="normal">Hard ball one turf (1000/= to 1200/=)</option>
-                                <option value="fullnet">Full Net Day Time (1750/=) Night Time (2500/=)</option>
+                                <option value="normal">Hard ball one turf per hour (1000/= to 1200/=)</option>
+                                <option value="fullnet">Full Net per hour - Day (1750/=) Night (2500/=)</option>
                             </select>
                         </div>
                         
@@ -2149,46 +2195,86 @@ footer {
         const generateTimeSlots = () => {
     const slots = [];
     for (let hour = 5; hour <= 23; hour++) {
-        const nextHour = hour === 23 ? 0 : hour + 1;
-        const formattedNextHour = nextHour < 10 ? `0${nextHour}` : nextHour;
+        const hourStr = hour.toString().padStart(2, '0');
+        
+        // Add XX:00-XX:30 slot
         slots.push({
-            start: `${hour}:00`,
-            end: `${formattedNextHour}:00`,  // Ensures "00:00" instead of "0:00"
-            display: `${hour}:00 - ${formattedNextHour}:00`
+            start: `${hourStr}:00`,
+            end: `${hourStr}:30`,
+            display: `${hour}:00 - ${hour}:30`
         });
+        
+        // Add XX:30-XX+1:00 slot
+        if (hour < 23) {
+            const nextHourStr = (hour + 1).toString().padStart(2, '0');
+            slots.push({
+                start: `${hourStr}:30`,
+                end: `${nextHourStr}:00`,
+                display: `${hour}:30 - ${hour + 1}:00`
+            });
+        } else {
+            // Special case for 23:30-00:00
+            slots.push({
+                start: `23:30`,
+                end: `00:00`,
+                display: `23:30 - 00:00`
+            });
+        }
     }
     return slots;
 };
-        const allTimeSlots = generateTimeSlots();
+
+const allTimeSlots = generateTimeSlots();
 
         // Render time slots
-        const renderTimeSlots = (bookedSlots = []) => {
-            timeSlotsContainer.innerHTML = '';
+        const renderTimeSlots = async (bookedSlots = []) => {
+    timeSlotsContainer.innerHTML = '';
+    
+    // Helper function to check if a slot is booked
+    const isSlotBooked = (slotStart, slotEnd) => {
+        return bookedSlots.some(booked => {
+            return (slotStart >= booked.start && slotStart < booked.end) ||
+                   (slotEnd > booked.start && slotEnd <= booked.end) ||
+                   (slotStart <= booked.start && slotEnd >= booked.end);
+        });
+    };
+
+    allTimeSlots.forEach(slot => {
+        const slotElement = document.createElement('div');
+        const isBooked = isSlotBooked(slot.start, slot.end);
+        
+        slotElement.className = `time-slot ${isBooked ? 'booked' : ''}`;
+        slotElement.textContent = slot.display;
+        slotElement.dataset.start = slot.start;
+        slotElement.dataset.end = slot.end;
+        
+        if (!isBooked) {
+            function updateSelectedTimeRange() {
+    const selectedSlots = document.querySelectorAll('.time-slot.selected');
+    // Example: get the earliest start and latest end
+    if (selectedSlots.length > 0) {
+        const starts = Array.from(selectedSlots).map(s => s.dataset.start);
+        const ends = Array.from(selectedSlots).map(s => s.dataset.end);
+        const earliest = starts.sort()[0];
+        const latest = ends.sort().pop();
+        document.getElementById('startTime').value = earliest;
+        document.getElementById('endTime').value = latest;
+    }
+}
+
             
-            allTimeSlots.forEach(slot => {
-                const isBooked = bookedSlots.includes(slot.start);
-                const slotElement = document.createElement('div');
-                slotElement.className = `time-slot ${isBooked ? 'booked' : ''}`;
-                slotElement.textContent = slot.display;
-                slotElement.dataset.start = slot.start;
-                slotElement.dataset.end = slot.end;
-                
-                if (!isBooked) {
-                    slotElement.addEventListener('click', () => {
-                        // Remove selected class from all slots
-                        document.querySelectorAll('.time-slot').forEach(el => {
-                            el.classList.remove('selected');
-                        });
-                        
-                        // Add selected class to clicked slot
-                        slotElement.classList.add('selected');
-                        selectedSlotInput.value = `${slot.start}-${slot.end}`;
-                    });
-                }
-                
-                timeSlotsContainer.appendChild(slotElement);
-            });
-        };
+        
+        }
+        
+        timeSlotsContainer.appendChild(slotElement);
+    });
+};
+
+// Helper function to check time overlap
+function isTimeOverlap(start1, end1, bookedTime) {
+    const [start2, end2] = bookedTime.split('-');
+    return (start1 < end2) && (end1 > start2);
+}
 
         // Sync local bookings with Supabase
 
@@ -2221,68 +2307,48 @@ footer {
 // Get booked slots for selected date
 const getBookedSlots = async (date) => {
     try {
-        const localBookings = getBookingsFromLocalStorage();
+        // Fetch from Supabase
         const { data: supabaseBookings, error } = await supabase
             .from('bookings')
-            .select('time_slot')
+            .select('time_slot, start_time, end_time')
             .eq('booking_date', date);
         
         if (error) throw error;
-        
-        const allBookings = [
-            ...localBookings.filter(b => b.booking_date === date),
-            ...supabaseBookings
-        ];
-        
-        const bookedHours = new Set();
-        
-        allBookings.forEach(booking => {
+
+        // Process the bookings to get all occupied time periods
+        const bookedSlots = [];
+        supabaseBookings.forEach(booking => {
             const [start, end] = booking.time_slot.split('-');
-            const startHour = parseInt(start.split(':')[0]);
-            let endHour = parseInt(end.split(':')[0]);
-            
-            // Handle midnight (0) as 24 for calculation purposes
-            if (endHour === 0) endHour = 24;
-            
-            for (let hour = startHour; hour < endHour; hour++) {
-                const displayHour = hour > 23 ? 0 : hour; // Convert back to 0 for display
-                bookedHours.add(`${displayHour}:00`);
-            }
+            bookedSlots.push({
+                start: start.trim(),
+                end: end.trim()
+            });
         });
-        
-        return Array.from(bookedHours);
+
+        return bookedSlots;
     } catch (error) {
         console.error('Error fetching booked slots:', error);
-        const localBookings = getBookingsFromLocalStorage();
-        return localBookings
-            .filter(booking => booking.booking_date === date)
-            .flatMap(booking => {
-                const [start, end] = booking.time_slot.split('-');
-                const startHour = parseInt(start.split(':')[0]);
-                let endHour = parseInt(end.split(':')[0]);
-                if (endHour === 0) endHour = 24;
-                const hours = [];
-                for (let hour = startHour; hour < endHour; hour++) {
-                    const displayHour = hour > 23 ? 0 : hour;
-                    hours.push(`${displayHour}:00`);
-                }
-                return hours;
-            });
+        return [];
     }
 };
 
         // Handle date change
         dateInput.addEventListener('change', async () => {
-            if (!dateInput.value) return;
-            
-            submitBtn.disabled = true;
-            timeSlotsContainer.innerHTML = '<div class="spinner"></div>';
-            
-            const bookedSlots = await getBookedSlots(dateInput.value);
-            renderTimeSlots(bookedSlots);
-            
-            submitBtn.disabled = false;
-        });
+    if (!dateInput.value) return;
+    
+    submitBtn.disabled = true;
+    timeSlotsContainer.innerHTML = '<div class="spinner"></div>';
+    
+    try {
+        const bookedSlots = await getBookedSlots(dateInput.value);
+        await renderTimeSlots(bookedSlots);
+    } catch (error) {
+        console.error('Error loading time slots:', error);
+        showError('Failed to load time slots. Please try again.');
+    } finally {
+        submitBtn.disabled = false;
+    }
+});
 
         // Show error message
         const showError = (message) => {
@@ -2322,7 +2388,7 @@ bookingFormElement.addEventListener('submit', async (e) => {
     let startTime, endTime, timeSlot;
     
     if (isRangeMode) {
-        // Validate time range inputs only in range mode
+        // Handle range mode
         startTime = document.getElementById('startTime').value;
         endTime = document.getElementById('endTime').value;
         
@@ -2338,19 +2404,20 @@ bookingFormElement.addEventListener('submit', async (e) => {
         
         timeSlot = `${startTime}-${endTime}`;
     } else {
-        // In slot mode, get the selected slot
-        const selectedSlot = document.querySelector('.time-slot.selected');
+        // Handle slot mode with multiple selections
+        const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'));
         
-        if (!selectedSlot) {
-            showError('Please select a time slot');
+        if (selectedSlots.length === 0) {
+            showError('Please select at least one time slot');
             return;
         }
         
-        startTime = selectedSlot.dataset.start;
-        endTime = selectedSlot.dataset.end;
+        // Get the combined time range
+        const sortedSlots = selectedSlots.sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
+        startTime = sortedSlots[0].dataset.start;
+        endTime = sortedSlots[sortedSlots.length - 1].dataset.end;
         timeSlot = `${startTime}-${endTime}`;
     }
-    
     
     // Validate form inputs
     if (!name) {
@@ -2373,26 +2440,12 @@ bookingFormElement.addEventListener('submit', async (e) => {
         return;
     }
     
-    if (!startTime || !endTime) {
-        showError('Please select both start and end times');
-        return;
-    }
-    
-    if (startTime === endTime) {
-        showError('End time must be after start time');
-        return;
-    }
-    
     // Validate time range doesn't conflict with existing bookings
-    // In the form submission handler, update the error display:
-const validation = await validateTimeRange(date, startTime, endTime);
-if (!validation.valid) {
-    const conflictStart = parseInt(validation.conflict.split(':')[0]);
-const conflictEnd = parseInt(validation.conflictRange.split('-')[1].split(':')[0]);
-showError(`${conflictStart}:00 - ${conflictEnd}:00 is already booked. Please select a different time range.`);
-    return;
-}
-
+    const validation = await validateTimeRange(date, startTime, endTime);
+    if (!validation.valid) {
+        showError(`The selected time (${validation.conflictRange}) conflicts with an existing booking. Please choose a different time.`);
+        return;
+    }
     
     // Disable submit button and show loading spinner
     submitBtn.disabled = true;
@@ -2403,7 +2456,16 @@ showError(`${conflictStart}:00 - ${conflictEnd}:00 is already booked. Please sel
         const bookingId = 'SYN-' + Date.now().toString().slice(-6);
         
         // Calculate price based on duration and type
+        const startHour = parseInt(startTime.split(':')[0]);
+        const endHour = endTime === '00:00' ? 24 : parseInt(endTime.split(':')[0]);
+        const durationHours = endHour - startHour;
         
+        let price;
+        if (bookingType === 'normal') {
+            price = startHour >= 18 ? 1200 * durationHours : 1000 * durationHours;
+        } else {
+            price = startHour >= 18 ? 2500 * durationHours : 1750 * durationHours;
+        }
         
         // Create booking object
         const booking = {
@@ -2411,10 +2473,11 @@ showError(`${conflictStart}:00 - ${conflictEnd}:00 is already booked. Please sel
             name: name,
             mobile: mobile,
             booking_date: date,
-            time_slot: `${startTime}-${endTime}`,
+            time_slot: timeSlot,
             start_time: startTime,
             end_time: endTime,
             type: bookingType,
+            price: price,
             created_at: new Date().toISOString()
         };
         
@@ -2455,9 +2518,9 @@ showError(`${conflictStart}:00 - ${conflictEnd}:00 is already booked. Please sel
         }, 5000);
         
         // Format time slot for display
-        const startHour = parseInt(startTime.split(':')[0]);
-const endHour = parseInt(endTime.split(':')[0]);
-const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
+        const startDisplay = startTime;
+        const endDisplay = endTime === '00:00' ? '24:00' : endTime;
+        const timeSlotDisplay = `${startDisplay} - ${endDisplay}`;
         
         // Show confirmation
         confirmName.textContent = booking.name;
@@ -2470,12 +2533,7 @@ const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
         });
         confirmTime.textContent = timeSlotDisplay;
         confirmId.textContent = bookingId;
-        
-        // Add type and price to confirmation details
-        const typeDisplay = booking.type === 'normal' 
-            ? `Normal (${booking.price} LKR)` 
-            : `Full Net (${booking.price} LKR)`;
-        confirmType.textContent = typeDisplay;
+        confirmType.textContent = `${bookingType === 'normal' ? 'Normal Session' : 'Full Net Session'} (${price} LKR)`;
         
         // Hide form and show confirmation
         document.querySelector('.booking-form').style.display = 'none';
@@ -2507,18 +2565,44 @@ const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
 const generateTimeOptions = () => {
     const options = [];
     for (let hour = 5; hour <= 23; hour++) {
-        const formattedHour = hour.toString().padStart(2, '0'); // "05", "23"
+        const hourStr = hour.toString().padStart(2, '0');
+        
+        // Add :00 option
         options.push({
-            value: `${formattedHour}:00`,
-            display: `${formattedHour}:00`
+            value: `${hourStr}:00`,
+            display: `${hour}:00`
+        });
+        
+        // Add :30 option (including 23:30)
+        options.push({
+            value: `${hourStr}:30`,
+            display: `${hour}:30`
         });
     }
-    // Add midnight (consistent formatting)
-    options.push({ value: "00:00", display: "00:00" });
+    // Add midnight option
+    options.push({ 
+        value: "00:00", 
+        display: "00:00" 
+    });
     return options;
 };
+
 // Initialize the booking system
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    
+    // Load initial data
+    await checkAcademyStatus();
+    await showNext7DaysBookedSlots();
+    
+    // Set default date to today if empty
+    if (!dateInput.value) {
+        dateInput.value = today;
+        const bookedSlots = await getBookedSlots(today);
+        await renderTimeSlots(bookedSlots);
+    }
     // Render time options in select dropdowns
     renderTimeOptions();
     
@@ -2557,19 +2641,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Add click handler for time slots
+// Add click handler for time slots
 document.getElementById('timeSlots').addEventListener('click', function(e) {
-    if (e.target.classList.contains('time-slot') && !e.target.classList.contains('booked')) {
-        // Switch to slot mode
-        document.querySelector('.mode-option[data-mode="slot"]').click();
-        
-        // Select the clicked slot
-        document.querySelectorAll('.time-slot').forEach(el => {
-            el.classList.remove('selected');
-        });
-        e.target.classList.add('selected');
-        selectedSlotInput.value = `${e.target.dataset.start}-${e.target.dataset.end}`;
-    }
+    const clickedSlot = e.target.closest('.time-slot');
+    if (!clickedSlot || clickedSlot.classList.contains('booked')) return;
+    
+    // Only allow selection if in slot mode
+    const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
+    if (isRangeMode) return;
+    
+    // Toggle selection
+    clickedSlot.classList.toggle('selected');
+    
+    // Update the combined time range
+    updateSelectedTimeRange();
 });
+
+function updateSelectedTimeRange() {
+    const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'))
+        .sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
+    
+    if (selectedSlots.length === 0) {
+        document.getElementById('selectedSlot').value = '';
+        return;
+    }
+
+    // Check if slots are consecutive
+    let isConsecutive = true;
+    for (let i = 0; i < selectedSlots.length - 1; i++) {
+        if (selectedSlots[i].dataset.end !== selectedSlots[i + 1].dataset.start) {
+            isConsecutive = false;
+            break;
+        }
+    }
+
+    if (isConsecutive) {
+        const startTime = selectedSlots[0].dataset.start;
+        const endTime = selectedSlots[selectedSlots.length - 1].dataset.end;
+        document.getElementById('selectedSlot').value = `${startTime}-${endTime}`;
+    } else {
+        showError('Please select consecutive time slots');
+        // Deselect all if not consecutive
+        selectedSlots.forEach(slot => slot.classList.remove('selected'));
+        document.getElementById('selectedSlot').value = '';
+    }
+}
+
+
     
     // Initialize with time range enabled by default
     toggleSelectionMode(true);
@@ -2616,7 +2734,7 @@ const toggleSelectionMode = (useTimeRange) => {
         });
         document.getElementById('selectedSlot').value = '';
     } else {
-        // Using time slots - disable time range, enable time slots
+        // Using time slots - enable time slots, disable time range
         timeRangeSelector.classList.add('disabled');
         timeSlotsContainer.classList.remove('disabled');
         
@@ -2683,6 +2801,7 @@ document.getElementById('startTime').addEventListener('change', function() {
 // Function to show booked slots for next 7 days
 // Function to show booked slots for next 7 days
 // Function to show booked slots for next 7 days
+// Function to show booked slots for next 7 days
 const showNext7DaysBookedSlots = async () => {
     const today = new Date();
     const bookingsContainer = document.querySelector('.booking-details');
@@ -2719,15 +2838,11 @@ const showNext7DaysBookedSlots = async () => {
 
             bookings.forEach(booking => {
                 const [start, end] = booking.time_slot.split('-');
-                let startHour = parseInt(start.split(':')[0]);
-                let endHour = parseInt(end.split(':')[0]);
                 
-                // Handle midnight display
-                const endDisplay = endHour === 0 ? '00:00' : `${endHour}:00`;
-                
+                // Display the exact times from the booking
                 const slotElement = document.createElement('div');
                 slotElement.className = 'booked-slot';
-                slotElement.textContent = `${startHour}:00 - ${endDisplay}`;
+                slotElement.textContent = `${start} - ${end}`;
                 slotsList.appendChild(slotElement);
             });
             
@@ -2741,7 +2856,6 @@ const showNext7DaysBookedSlots = async () => {
         bookingsContainer.appendChild(noBookings);
     }
 };
-
 
 // Helper function to get complete bookings for a date
 // Helper function to get bookings for a date (only from Supabase)
@@ -2766,32 +2880,31 @@ const validateTimeRange = async (date, startTime, endTime) => {
     const bookings = await getBookingsForDate(date);
     if (bookings.length === 0) return { valid: true };
     
-    let startHour = parseInt(startTime.split(':')[0]);
-    let endHour = parseInt(endTime.split(':')[0]);
+    // Parse start and end times into minutes since midnight
+    const parseTime = (timeStr) => {
+        const [hours, mins] = timeStr.split(':').map(Number);
+        return hours * 60 + mins;
+    };
     
-    // Handle midnight (0) as 24 for comparison
-    if (endHour === 0) endHour = 24;
+    const startMinutes = parseTime(startTime);
+    const endMinutes = parseTime(endTime === '00:00' ? '24:00' : endTime);
     
     // Check against all existing bookings
     for (const booking of bookings) {
         const [existingStart, existingEnd] = booking.time_slot.split('-');
-        let existingStartHour = parseInt(existingStart.split(':')[0]);
-        let existingEndHour = parseInt(existingEnd.split(':')[0]);
-        
-        if (existingEndHour === 0) existingEndHour = 24;
+        const existingStartMinutes = parseTime(existingStart);
+        const existingEndMinutes = parseTime(existingEnd === '00:00' ? '24:00' : existingEnd);
         
         // Check for overlap
         if (
-            (startHour >= existingStartHour && startHour < existingEndHour) ||
-            (endHour > existingStartHour && endHour <= existingEndHour) ||
-            (startHour <= existingStartHour && endHour >= existingEndHour)
+            (startMinutes >= existingStartMinutes && startMinutes < existingEndMinutes) ||
+            (endMinutes > existingStartMinutes && endMinutes <= existingEndMinutes) ||
+            (startMinutes <= existingStartMinutes && endMinutes >= existingEndMinutes)
         ) {
-            const conflictStart = existingStartHour > 23 ? 0 : existingStartHour;
-            const conflictEnd = existingEndHour > 23 ? 0 : existingEndHour;
             return {
                 valid: false,
                 conflict: existingStart,
-                conflictRange: `${conflictStart}:00-${conflictEnd}:00`
+                conflictRange: `${existingStart}-${existingEnd}`
             };
         }
     }
@@ -2801,6 +2914,7 @@ const validateTimeRange = async (date, startTime, endTime) => {
 
 
 // Function to render bookings
+// Function to render bookings in the My Bookings section (without prices)
 function renderBookings() {
     const bookingsList = document.getElementById('bookingsList');
     const bookings = getBookingsFromLocalStorage();
@@ -2810,12 +2924,16 @@ function renderBookings() {
         return;
     }
     
+    // Sort bookings by date (newest first)
+    bookings.sort((a, b) => new Date(b.booking_date) - new Date(a.booking_date));
+    
     bookingsList.innerHTML = '';
     
     bookings.forEach(booking => {
         const bookingCard = document.createElement('div');
         bookingCard.className = 'mybooking-card';
         
+        // Format date nicely
         const formattedDate = new Date(booking.booking_date).toLocaleDateString('en-US', { 
             weekday: 'long', 
             year: 'numeric', 
@@ -2823,42 +2941,45 @@ function renderBookings() {
             day: 'numeric' 
         });
         
-        // Parse the complete time range (e.g., "10:00-15:00")
-        const [start, end] = booking.time_slot.split('-');
-        const startHour = parseInt(start.split(':')[0]);
-        const endHour = parseInt(end.split(':')[0]);
+        // Get exact time slot (e.g., "05:00-07:30")
+        const [startTime, endTime] = booking.time_slot.split('-');
         
-        const timeSlotDisplay = `${startHour}:00 - ${endHour}:00`;
-        
+        // Format session type without price
         const typeDisplay = booking.type === 'normal' 
-            ? `Normal (${booking.price} LKR)` 
-            : `Full Net (${booking.price} LKR)`;
+            ? 'Hard Ball Turf' 
+            : 'Full Net Turf';
+        
+        // Determine if booking is upcoming or past
+        const today = new Date();
+        const bookingDate = new Date(booking.booking_date);
+        const isUpcoming = bookingDate >= today;
         
         bookingCard.innerHTML = `
             <div class="mybooking-header">
                 <div class="mybooking-id">${booking.id}</div>
-                <div class="mybooking-date">${formattedDate}</div>
+                <div class="mybooking-date ${isUpcoming ? 'upcoming' : 'past'}">
+                    ${formattedDate}
+                    <span class="booking-status">${isUpcoming ? 'Upcoming' : 'Completed'}</span>
+                </div>
             </div>
             <div class="mybooking-details">
                 <div class="mybooking-detail">
                     <strong>Time Slot</strong>
-                    <span>${timeSlotDisplay}</span>
+                    <span>${startTime} - ${endTime}</span>
                 </div>
                 <div class="mybooking-detail">
                     <strong>Session Type</strong>
                     <span>${typeDisplay}</span>
                 </div>
                 <div class="mybooking-detail">
-                    <strong>Amount</strong>
-                    <span>${booking.price} LKR</span>
+                    <strong>Mobile</strong>
+                    <span>${booking.mobile}</span>
                 </div>
-            
+            </div>
         `;
         
         bookingsList.appendChild(bookingCard);
     });
-    
-    
 }
 
 // Add this to your initialization code at the bottom
