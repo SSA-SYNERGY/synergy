@@ -2382,80 +2382,21 @@ bookingFormElement.addEventListener('submit', async (e) => {
     const mobile = mobileInput.value.trim();
     const date = dateInput.value;
     const bookingType = bookingTypeInput.value;
+    const startTime = document.getElementById('startTime').value;
+    const endTime = document.getElementById('endTime').value;
     
-    // Check which selection mode is active
-    const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
-    let startTime, endTime, timeSlot;
-    
-    if (isRangeMode) {
-        // Handle range mode
-        startTime = document.getElementById('startTime').value;
-        endTime = document.getElementById('endTime').value;
-        
-        if (!startTime || !endTime) {
-            showError('Please select both start and end times');
-            return;
-        }
-        
-        if (startTime === endTime) {
-            showError('End time must be after start time');
-            return;
-        }
-        
-        timeSlot = `${startTime}-${endTime}`;
-    } else {
-        // Handle slot mode with multiple selections
-        const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'));
-        
-        if (selectedSlots.length === 0) {
-            showError('Please select at least one time slot');
-            return;
-        }
-        
-        // Get the combined time range
-        const sortedSlots = selectedSlots.sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
-        startTime = sortedSlots[0].dataset.start;
-        endTime = sortedSlots[sortedSlots.length - 1].dataset.end;
-        timeSlot = `${startTime}-${endTime}`;
-    }
-    
-    // Validate form inputs
-    if (!name) {
-        showError('Please enter your full name');
+    // Validation
+    if (!name || !mobile || !date || !bookingType || !startTime || !endTime) {
+        showError('Please fill all required fields');
         return;
     }
     
-    if (!mobile || !/^[0-9]{10}$/.test(mobile)) {
-        showError('Please enter a valid 10-digit mobile number');
-        return;
-    }
-    
-    if (!date) {
-        showError('Please select a booking date');
-        return;
-    }
-    
-    if (!bookingType) {
-        showError('Please select a session type');
-        return;
-    }
-    
-    // Validate time range doesn't conflict with existing bookings
-    const validation = await validateTimeRange(date, startTime, endTime);
-    if (!validation.valid) {
-        showError(`The selected time (${validation.conflictRange}) conflicts with an existing booking. Please choose a different time.`);
-        return;
-    }
-    
-    // Disable submit button and show loading spinner
+    // Disable submit button
     submitBtn.disabled = true;
     loadingSpinner.style.display = 'block';
     
     try {
-        // Generate a unique booking ID
-        const bookingId = 'SYN-' + Date.now().toString().slice(-6);
-        
-        // Calculate price based on duration and type
+        // Calculate price
         const startHour = parseInt(startTime.split(':')[0]);
         const endHour = endTime === '00:00' ? 24 : parseInt(endTime.split(':')[0]);
         const durationHours = endHour - startHour;
@@ -2467,97 +2408,64 @@ bookingFormElement.addEventListener('submit', async (e) => {
             price = startHour >= 18 ? 2500 * durationHours : 1750 * durationHours;
         }
         
-        // Create booking object
-        const booking = {
-            id: bookingId,
-            name: name,
-            mobile: mobile,
-            booking_date: date,
-            time_slot: timeSlot,
-            start_time: startTime,
-            end_time: endTime,
-            type: bookingType,
-            price: price,
-            created_at: new Date().toISOString()
-        };
+        // Call the database function atomically
+        const { data, error } = await supabase.rpc('check_and_create_booking', {
+            p_name: name,
+            p_mobile: mobile,
+            p_booking_date: date,
+            p_start_time: startTime,
+            p_end_time: endTime,
+            p_booking_type: bookingType,
+            p_price: price
+        });
         
-        // FIRST try to upload to Supabase
-        const { data, error } = await supabase
-            .from('bookings')
-            .insert([
-                {
-                    name: booking.name,
-                    mobile: booking.mobile,
-                    booking_date: booking.booking_date,
-                    time_slot: booking.time_slot,
-                    start_time: booking.start_time,
-                    end_time: booking.end_time,
-                    type: booking.type,
-                    price: booking.price,
-                    booking_id: booking.id,
-                    created_at: booking.created_at
-                }
-            ])
-            .select();
+        if (error) throw error;
         
-        if (error) {
-            console.error('Supabase upload error:', error);
-            throw new Error('Failed to upload booking to server. Please try again.');
+        if (!data.success) {
+            throw new Error(data.error);
         }
         
-        // Only save to local storage if Supabase upload succeeds
-        saveBookingToLocalStorage(booking);
+        // Success - get the full booking details
+        const { data: bookingData, error: fetchError } = await supabase
+            .from('bookings')
+            .select('*')
+            .eq('booking_id', data.booking_id)
+            .single();
+            
+        if (fetchError) throw fetchError;
         
-        // Show popup notification for successful Supabase upload
+        // Save to local storage and update UI
+        saveBookingToLocalStorage({
+            ...bookingData,
+            id: data.booking_id
+        });
+        
+        // Show success notification
         const popup = document.getElementById('popupNotification');
         popup.classList.add('show');
-        
-        // Hide after 5 seconds
-        setTimeout(() => {
-            popup.classList.remove('show');
-        }, 5000);
-        
-        // Format time slot for display
-        const startDisplay = startTime;
-        const endDisplay = endTime === '00:00' ? '24:00' : endTime;
-        const timeSlotDisplay = `${startDisplay} - ${endDisplay}`;
+        setTimeout(() => popup.classList.remove('show'), 5000);
         
         // Show confirmation
-        confirmName.textContent = booking.name;
-        confirmMobile.textContent = booking.mobile;
-        confirmDate.textContent = new Date(booking.booking_date).toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
-        confirmTime.textContent = timeSlotDisplay;
-        confirmId.textContent = bookingId;
-        confirmType.textContent = `${bookingType === 'normal' ? 'Normal Session' : 'Full Net Session'} (${price} LKR)`;
+        showConfirmation(bookingData);
         
-        // Hide form and show confirmation
-        document.querySelector('.booking-form').style.display = 'none';
-        document.querySelector('.booking-details').style.display = 'none';
-        confirmationContainer.style.display = 'block';
-        
-        // Scroll to confirmation
-        confirmationContainer.scrollIntoView({ behavior: 'smooth' });
-        
-        // Show success message
-        showSuccess('Booking confirmed successfully!');
-        
-        // Refresh bookings list
+        // Refresh displays
+        await showNext7DaysBookedSlots();
         renderBookings();
         
+        // Refresh available slots
+        if (dateInput.value) {
+            const bookedSlots = await getBookedSlots(dateInput.value);
+            await renderTimeSlots(bookedSlots);
+        }
+        
     } catch (error) {
-        console.error('Error creating booking:', error);
-        showError(error.message || 'Failed to create booking. Please try again.');
+        console.error('Booking error:', error);
+        showError(error.message);
     } finally {
         submitBtn.disabled = false;
         loadingSpinner.style.display = 'none';
     }
 });
-
 
 
 
@@ -2590,6 +2498,7 @@ const generateTimeOptions = () => {
 // Initialize the booking system
 document.addEventListener('DOMContentLoaded', async () => {
     // Set minimum date to today
+    setupRealTimeUpdates();
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
     
@@ -2718,6 +2627,9 @@ function updateSelectedTimeRange() {
     });
 });
     
+
+
+
     // Function to toggle between time range and time slot selection
 const toggleSelectionMode = (useTimeRange) => {
     const timeRangeSelector = document.querySelector('.time-range-selector');
@@ -2877,41 +2789,113 @@ const getBookingsForDate = async (date) => {
 
 // Validate time range doesn't conflict with existing bookings
 const validateTimeRange = async (date, startTime, endTime) => {
-    const bookings = await getBookingsForDate(date);
-    if (bookings.length === 0) return { valid: true };
-    
-    // Parse start and end times into minutes since midnight
-    const parseTime = (timeStr) => {
-        const [hours, mins] = timeStr.split(':').map(Number);
-        return hours * 60 + mins;
-    };
-    
-    const startMinutes = parseTime(startTime);
-    const endMinutes = parseTime(endTime === '00:00' ? '24:00' : endTime);
-    
-    // Check against all existing bookings
-    for (const booking of bookings) {
-        const [existingStart, existingEnd] = booking.time_slot.split('-');
-        const existingStartMinutes = parseTime(existingStart);
-        const existingEndMinutes = parseTime(existingEnd === '00:00' ? '24:00' : existingEnd);
+    try {
+        const bookings = await getBookingsForDate(date);
+        if (bookings.length === 0) return { valid: true };
         
-        // Check for overlap
-        if (
-            (startMinutes >= existingStartMinutes && startMinutes < existingEndMinutes) ||
-            (endMinutes > existingStartMinutes && endMinutes <= existingEndMinutes) ||
-            (startMinutes <= existingStartMinutes && endMinutes >= existingEndMinutes)
-        ) {
-            return {
-                valid: false,
-                conflict: existingStart,
-                conflictRange: `${existingStart}-${existingEnd}`
-            };
+        // Parse times into minutes since midnight
+        const parseTime = (timeStr) => {
+            const [hours, mins] = timeStr.split(':').map(Number);
+            return hours * 60 + mins;
+        };
+        
+        const startMinutes = parseTime(startTime);
+        const endMinutes = parseTime(endTime === '00:00' ? '24:00' : endTime);
+        
+        // Check against all existing bookings
+        for (const booking of bookings) {
+            const [existingStart, existingEnd] = booking.time_slot.split('-');
+            const existingStartMinutes = parseTime(existingStart);
+            const existingEndMinutes = parseTime(existingEnd === '00:00' ? '24:00' : existingEnd);
+            
+            // Check for any overlap
+            const hasOverlap = (
+                (startMinutes >= existingStartMinutes && startMinutes < existingEndMinutes) ||
+                (endMinutes > existingStartMinutes && endMinutes <= existingEndMinutes) ||
+                (startMinutes <= existingStartMinutes && endMinutes >= existingEndMinutes)
+            );
+            
+            if (hasOverlap) {
+                return {
+                    valid: false,
+                    conflict: existingStart,
+                    conflictRange: `${existingStart}-${existingEnd}`
+                };
+            }
         }
+        
+        return { valid: true };
+    } catch (error) {
+        console.error('Validation error:', error);
+        return { valid: false, conflictRange: 'Unknown' };
     }
-    
-    return { valid: true };
 };
 
+// Add this function to show confirmation
+const showConfirmation = (booking) => {
+    // Format time slot for display
+    const startDisplay = booking.start_time;
+    const endDisplay = booking.end_time === '00:00' ? '24:00' : booking.end_time;
+    const timeSlotDisplay = `${startDisplay} - ${endDisplay}`;
+    
+    // Show confirmation details
+    confirmName.textContent = booking.name;
+    confirmMobile.textContent = booking.mobile;
+    confirmDate.textContent = new Date(booking.booking_date).toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+    confirmTime.textContent = timeSlotDisplay;
+    confirmId.textContent = booking.booking_id;
+    confirmType.textContent = `${booking.type === 'normal' ? 'Normal Session' : 'Full Net Session'} (${booking.price} LKR)`;
+    
+    // Hide form and show confirmation
+    document.querySelector('.booking-form').style.display = 'none';
+    document.querySelector('.booking-details').style.display = 'none';
+    confirmationContainer.style.display = 'block';
+    
+    // Scroll to confirmation
+    confirmationContainer.scrollIntoView({ behavior: 'smooth' });
+};
+
+// Add real-time subscription to detect when others make bookings
+const setupRealTimeUpdates = () => {
+    const subscription = supabase
+        .channel('bookings')
+        .on('postgres_changes', 
+            { 
+                event: 'INSERT', 
+                schema: 'public', 
+                table: 'bookings' 
+            },
+            async (payload) => {
+                console.log('New booking detected:', payload.new);
+                
+                // Refresh time slots if viewing the same date
+                if (dateInput.value === payload.new.booking_date) {
+                    const bookedSlots = await getBookedSlots(dateInput.value);
+                    await renderTimeSlots(bookedSlots);
+                    
+                    // Show notification to user
+                    showError('Note: Available slots have been updated. Please review your selection.');
+                }
+                
+                // Refresh upcoming bookings display
+                await showNext7DaysBookedSlots();
+            }
+        )
+        .subscribe();
+        
+    return subscription;
+};
+
+// Call this in your initialization
+document.addEventListener('DOMContentLoaded', async () => {
+    // Your existing initialization code...
+    setupRealTimeUpdates();
+});
 
 // Function to render bookings
 // Function to render bookings in the My Bookings section (without prices)
@@ -3084,7 +3068,7 @@ function clearBookingFromLocalStorage(bookingId) {
             }
         };
 
-        // Initialize
+        // Initializzzze
         checkAcademyStatus();
         renderTimeSlots();
         createParticles();
