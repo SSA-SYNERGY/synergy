@@ -2373,7 +2373,7 @@ const getBookedSlots = async (date) => {
         };
 
        // Handle form submission
-// Handle form submission with custom time range selection
+/// Replace the existing form submission handler with this updated version
 bookingFormElement.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -2384,11 +2384,28 @@ bookingFormElement.addEventListener('submit', async (e) => {
     const bookingType = bookingTypeInput.value;
     const startTime = document.getElementById('startTime').value;
     const endTime = document.getElementById('endTime').value;
+    const selectedSlot = document.getElementById('selectedSlot').value;
     
-    // Validation
-    if (!name || !mobile || !date || !bookingType || !startTime || !endTime) {
+    // Check which selection mode is active
+    const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
+    
+    // Validation - check for either time range OR time slot, but not both
+    if (!name || !mobile || !date || !bookingType) {
         showError('Please fill all required fields');
         return;
+    }
+    
+    // Check for time selection based on active mode
+    if (isRangeMode) {
+        if (!startTime || !endTime) {
+            showError('Please select a time range');
+            return;
+        }
+    } else {
+        if (!selectedSlot) {
+            showError('Please select a time slot');
+            return;
+        }
     }
     
     // Disable submit button
@@ -2396,9 +2413,21 @@ bookingFormElement.addEventListener('submit', async (e) => {
     loadingSpinner.style.display = 'block';
     
     try {
+        // Determine the actual time range to use
+        let actualStartTime, actualEndTime;
+        
+        if (isRangeMode) {
+            // Using time range selection
+            actualStartTime = startTime;
+            actualEndTime = endTime;
+        } else {
+            // Using time slot selection - parse from selectedSlot
+            [actualStartTime, actualEndTime] = selectedSlot.split('-');
+        }
+        
         // Calculate price
-        const startHour = parseInt(startTime.split(':')[0]);
-        const endHour = endTime === '00:00' ? 24 : parseInt(endTime.split(':')[0]);
+        const startHour = parseInt(actualStartTime.split(':')[0]);
+        const endHour = actualEndTime === '00:00' ? 24 : parseInt(actualEndTime.split(':')[0]);
         const durationHours = endHour - startHour;
         
         let price;
@@ -2413,8 +2442,8 @@ bookingFormElement.addEventListener('submit', async (e) => {
             p_name: name,
             p_mobile: mobile,
             p_booking_date: date,
-            p_start_time: startTime,
-            p_end_time: endTime,
+            p_start_time: actualStartTime,
+            p_end_time: actualEndTime,
             p_booking_type: bookingType,
             p_price: price
         });
@@ -2466,7 +2495,6 @@ bookingFormElement.addEventListener('submit', async (e) => {
         loadingSpinner.style.display = 'none';
     }
 });
-
 
 
 // Generate time options (5am to 11pm with 1-hour intervals)
@@ -2631,6 +2659,7 @@ function updateSelectedTimeRange() {
 
 
     // Function to toggle between time range and time slot selection
+// Update the toggleSelectionMode function
 const toggleSelectionMode = (useTimeRange) => {
     const timeRangeSelector = document.querySelector('.time-range-selector');
     const timeSlotsContainer = document.getElementById('timeSlots');
@@ -2645,6 +2674,11 @@ const toggleSelectionMode = (useTimeRange) => {
             el.classList.remove('selected');
         });
         document.getElementById('selectedSlot').value = '';
+        
+        // Make time range required and time slot not required
+        document.getElementById('startTime').required = true;
+        document.getElementById('endTime').required = true;
+        document.getElementById('selectedSlot').required = false;
     } else {
         // Using time slots - enable time slots, disable time range
         timeRangeSelector.classList.add('disabled');
@@ -2653,6 +2687,11 @@ const toggleSelectionMode = (useTimeRange) => {
         // Clear any selected time range
         document.getElementById('startTime').value = '';
         document.getElementById('endTime').value = '';
+        
+        // Make time slot required and time range not required
+        document.getElementById('startTime').required = false;
+        document.getElementById('endTime').required = false;
+        document.getElementById('selectedSlot').required = true;
     }
 };
 
@@ -3068,7 +3107,7 @@ function clearBookingFromLocalStorage(bookingId) {
             }
         };
 
-        // Initializzzze
+        // Initialize
         checkAcademyStatus();
         renderTimeSlots();
         createParticles();
