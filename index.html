@@ -2184,6 +2184,7 @@ footer {
         const confirmTime = document.getElementById('confirmTime');
         const confirmId = document.getElementById('confirmId');
         const confirmType = document.getElementById('confirmType');
+        
 
         // Set minimum date (today)
         const today = new Date();
@@ -2226,16 +2227,32 @@ footer {
 
 const allTimeSlots = generateTimeSlots();
 
+// Helper function to parse time string to minutes
+const parseTime = (timeStr) => {
+    const [hours, mins] = timeStr.split(':').map(Number);
+    return hours * 60 + mins;
+};
         // Render time slots
-        const renderTimeSlots = async (bookedSlots = []) => {
+const renderTimeSlots = async (bookedSlots = []) => {
     timeSlotsContainer.innerHTML = '';
     
-    // Helper function to check if a slot is booked
+    // Helper function to check if a slot is booked - FIXED VERSION
     const isSlotBooked = (slotStart, slotEnd) => {
         return bookedSlots.some(booked => {
-            return (slotStart >= booked.start && slotStart < booked.end) ||
-                   (slotEnd > booked.start && slotEnd <= booked.end) ||
-                   (slotStart <= booked.start && slotEnd >= booked.end);
+            const slotStartMinutes = parseTime(slotStart);
+            let slotEndMinutes = parseTime(slotEnd === '00:00' ? '24:00' : slotEnd);
+            const bookedStartMinutes = parseTime(booked.start);
+            let bookedEndMinutes = parseTime(booked.end === '00:00' ? '24:00' : booked.end);
+            
+            if (slotEnd === '00:00') slotEndMinutes = 24 * 60;
+            if (booked.end === '00:00') bookedEndMinutes = 24 * 60;
+            
+            return (
+                (slotStartMinutes >= bookedStartMinutes && slotStartMinutes < bookedEndMinutes) ||
+                (slotEndMinutes > bookedStartMinutes && slotEndMinutes <= bookedEndMinutes) ||
+                (slotStartMinutes <= bookedStartMinutes && slotEndMinutes >= bookedEndMinutes) ||
+                (bookedStartMinutes <= slotStartMinutes && bookedEndMinutes >= slotEndMinutes)
+            );
         });
     };
 
@@ -2249,25 +2266,20 @@ const allTimeSlots = generateTimeSlots();
         slotElement.dataset.end = slot.end;
         
         if (!isBooked) {
-            function updateSelectedTimeRange() {
-    const selectedSlots = document.querySelectorAll('.time-slot.selected');
-    // Example: get the earliest start and latest end
-    if (selectedSlots.length > 0) {
-        const starts = Array.from(selectedSlots).map(s => s.dataset.start);
-        const ends = Array.from(selectedSlots).map(s => s.dataset.end);
-        const earliest = starts.sort()[0];
-        const latest = ends.sort().pop();
-        document.getElementById('startTime').value = earliest;
-        document.getElementById('endTime').value = latest;
-    }
-}
-
-            
-        
+            slotElement.addEventListener('click', function() {
+                // Only allow selection if in slot mode
+                const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
+                if (isRangeMode) return;
+                
+                // Toggle selection
+                this.classList.toggle('selected');
+                updateSelectedTimeRange();
+            });
         }
         
         timeSlotsContainer.appendChild(slotElement);
     });
+
 };
 
 // Helper function to check time overlap
@@ -2373,7 +2385,7 @@ const getBookedSlots = async (date) => {
         };
 
        // Handle form submission
-/// Replace the existing form submission handler with this updated version
+// Handle form submission with custom time range selection
 bookingFormElement.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -2382,52 +2394,82 @@ bookingFormElement.addEventListener('submit', async (e) => {
     const mobile = mobileInput.value.trim();
     const date = dateInput.value;
     const bookingType = bookingTypeInput.value;
-    const startTime = document.getElementById('startTime').value;
-    const endTime = document.getElementById('endTime').value;
-    const selectedSlot = document.getElementById('selectedSlot').value;
     
     // Check which selection mode is active
     const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
+    let startTime, endTime, timeSlot;
     
-    // Validation - check for either time range OR time slot, but not both
-    if (!name || !mobile || !date || !bookingType) {
-        showError('Please fill all required fields');
+    if (isRangeMode) {
+        // Handle range mode
+        startTime = document.getElementById('startTime').value;
+        endTime = document.getElementById('endTime').value;
+        
+        if (!startTime || !endTime) {
+            showError('Please select both start and end times');
+            return;
+        }
+        
+        if (startTime === endTime) {
+            showError('End time must be after start time');
+            return;
+        }
+        
+        timeSlot = `${startTime}-${endTime}`;
+    } else {
+        // Handle slot mode with multiple selections
+        const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'));
+        
+        if (selectedSlots.length === 0) {
+            showError('Please select at least one time slot');
+            return;
+        }
+        
+        // Get the combined time range
+        const sortedSlots = selectedSlots.sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
+        startTime = sortedSlots[0].dataset.start;
+        endTime = sortedSlots[sortedSlots.length - 1].dataset.end;
+        timeSlot = `${startTime}-${endTime}`;
+    }
+    
+    // Validate form inputs
+    if (!name) {
+        showError('Please enter your full name');
         return;
     }
     
-    // Check for time selection based on active mode
-    if (isRangeMode) {
-        if (!startTime || !endTime) {
-            showError('Please select a time range');
-            return;
-        }
-    } else {
-        if (!selectedSlot) {
-            showError('Please select a time slot');
-            return;
-        }
+    if (!mobile || !/^[0-9]{10}$/.test(mobile)) {
+        showError('Please enter a valid 10-digit mobile number');
+        return;
     }
     
-    // Disable submit button
+    if (!date) {
+        showError('Please select a booking date');
+        return;
+    }
+    
+    if (!bookingType) {
+        showError('Please select a session type');
+        return;
+    }
+    
+    // Validate time range doesn't conflict with existing bookings
+    const validation = await validateTimeRange(date, startTime, endTime);
+    if (!validation.valid) {
+        showError(`The selected time (${validation.conflictRange}) conflicts with an existing booking. Please choose a different time.`);
+        return;
+    }
+    
+    // Disable submit button and show loading spinner
     submitBtn.disabled = true;
     loadingSpinner.style.display = 'block';
     
     try {
-        // Determine the actual time range to use
-        let actualStartTime, actualEndTime;
+        // Generate a unique booking ID
+        const bookingId = 'SYN-' + Date.now().toString().slice(-6);
         
-        if (isRangeMode) {
-            // Using time range selection
-            actualStartTime = startTime;
-            actualEndTime = endTime;
-        } else {
-            // Using time slot selection - parse from selectedSlot
-            [actualStartTime, actualEndTime] = selectedSlot.split('-');
-        }
-        
-        // Calculate price
-        const startHour = parseInt(actualStartTime.split(':')[0]);
-        const endHour = actualEndTime === '00:00' ? 24 : parseInt(actualEndTime.split(':')[0]);
+        // Calculate price based on duration and type
+        const startHour = parseInt(startTime.split(':')[0]);
+        const endHour = endTime === '00:00' ? 24 : parseInt(endTime.split(':')[0]);
         const durationHours = endHour - startHour;
         
         let price;
@@ -2437,64 +2479,126 @@ bookingFormElement.addEventListener('submit', async (e) => {
             price = startHour >= 18 ? 2500 * durationHours : 1750 * durationHours;
         }
         
-        // Call the database function atomically
-        const { data, error } = await supabase.rpc('check_and_create_booking', {
-            p_name: name,
-            p_mobile: mobile,
-            p_booking_date: date,
-            p_start_time: actualStartTime,
-            p_end_time: actualEndTime,
-            p_booking_type: bookingType,
-            p_price: price
-        });
+        // Create booking object
+        const booking = {
+            id: bookingId,
+            name: name,
+            mobile: mobile,
+            booking_date: date,
+            time_slot: timeSlot,
+            start_time: startTime,
+            end_time: endTime,
+            type: bookingType,
+            price: price,
+            created_at: new Date().toISOString()
+        };
         
-        if (error) throw error;
+        // FIRST try to upload to Supabase
+        const { data, error } = await supabase
+            .from('bookings')
+            .insert([
+                {
+                    name: booking.name,
+                    mobile: booking.mobile,
+                    booking_date: booking.booking_date,
+                    time_slot: booking.time_slot,
+                    start_time: booking.start_time,
+                    end_time: booking.end_time,
+                    type: booking.type,
+                    price: booking.price,
+                    booking_id: booking.id,
+                    created_at: booking.created_at
+                }
+            ])
+            .select();
         
-        if (!data.success) {
-            throw new Error(data.error);
+        if (error) {
+            console.error('Supabase upload error:', error);
+            throw new Error('Failed to upload booking to server. Please try again.');
         }
         
-        // Success - get the full booking details
-        const { data: bookingData, error: fetchError } = await supabase
-            .from('bookings')
-            .select('*')
-            .eq('booking_id', data.booking_id)
-            .single();
-            
-        if (fetchError) throw fetchError;
+        // Only save to local storage if Supabase upload succeeds
+        saveBookingToLocalStorage(booking);
         
-        // Save to local storage and update UI
-        saveBookingToLocalStorage({
-            ...bookingData,
-            id: data.booking_id
-        });
-        
-        // Show success notification
+        // Show popup notification for successful Supabase upload
         const popup = document.getElementById('popupNotification');
         popup.classList.add('show');
-        setTimeout(() => popup.classList.remove('show'), 5000);
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 5000);
+        
+        // Format time slot for display
+        const startDisplay = startTime;
+        const endDisplay = endTime === '00:00' ? '24:00' : endTime;
+        const timeSlotDisplay = `${startDisplay} - ${endDisplay}`;
         
         // Show confirmation
-        showConfirmation(bookingData);
+        confirmName.textContent = booking.name;
+        confirmMobile.textContent = booking.mobile;
+        confirmDate.textContent = new Date(booking.booking_date).toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        confirmTime.textContent = timeSlotDisplay;
+        confirmId.textContent = bookingId;
+        confirmType.textContent = `${bookingType === 'normal' ? 'Normal Session' : 'Full Net Session'} (${price} LKR)`;
         
-        // Refresh displays
-        await showNext7DaysBookedSlots();
+        // Hide form and show confirmation
+        document.querySelector('.booking-form').style.display = 'none';
+        document.querySelector('.booking-details').style.display = 'none';
+        confirmationContainer.style.display = 'block';
+        
+        // Scroll to confirmation
+        confirmationContainer.scrollIntoView({ behavior: 'smooth' });
+        
+        // Show success message
+        showSuccess('Booking confirmed successfully!');
+        
+        // Refresh bookings list
         renderBookings();
         
-        // Refresh available slots
-        if (dateInput.value) {
-            const bookedSlots = await getBookedSlots(dateInput.value);
-            await renderTimeSlots(bookedSlots);
-        }
-        
     } catch (error) {
-        console.error('Booking error:', error);
-        showError(error.message);
+        console.error('Error creating booking:', error);
+        showError(error.message || 'Failed to create booking. Please try again.');
     } finally {
         submitBtn.disabled = false;
         loadingSpinner.style.display = 'none';
     }
 });
+
+function updateSelectedTimeRange() {
+    const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'))
+        .sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
+    
+    if (selectedSlots.length === 0) {
+        document.getElementById('selectedSlot').value = '';
+        return;
+    }
+
+    // Check if slots are consecutive
+    let isConsecutive = true;
+    for (let i = 0; i < selectedSlots.length - 1; i++) {
+        if (selectedSlots[i].dataset.end !== selectedSlots[i + 1].dataset.start) {
+            isConsecutive = false;
+            break;
+        }
+    }
+
+    if (isConsecutive) {
+        const startTime = selectedSlots[0].dataset.start;
+        const endTime = selectedSlots[selectedSlots.length - 1].dataset.end;
+        document.getElementById('selectedSlot').value = `${startTime}-${endTime}`;
+    } else {
+        showError('Please select consecutive time slots');
+        // Deselect all if not consecutive
+        selectedSlots.forEach(slot => slot.classList.remove('selected'));
+        document.getElementById('selectedSlot').value = '';
+    }
+}
 
 
 // Generate time options (5am to 11pm with 1-hour intervals)
@@ -2526,7 +2630,6 @@ const generateTimeOptions = () => {
 // Initialize the booking system
 document.addEventListener('DOMContentLoaded', async () => {
     // Set minimum date to today
-    setupRealTimeUpdates();
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
     
@@ -2587,42 +2690,14 @@ document.getElementById('timeSlots').addEventListener('click', function(e) {
     const isRangeMode = document.querySelector('.mode-option[data-mode="range"]').classList.contains('active');
     if (isRangeMode) return;
     
-    // Toggle selection
-    clickedSlot.classList.toggle('selected');
+    
+    
     
     // Update the combined time range
     updateSelectedTimeRange();
 });
 
-function updateSelectedTimeRange() {
-    const selectedSlots = Array.from(document.querySelectorAll('.time-slot.selected'))
-        .sort((a, b) => a.dataset.start.localeCompare(b.dataset.start));
-    
-    if (selectedSlots.length === 0) {
-        document.getElementById('selectedSlot').value = '';
-        return;
-    }
 
-    // Check if slots are consecutive
-    let isConsecutive = true;
-    for (let i = 0; i < selectedSlots.length - 1; i++) {
-        if (selectedSlots[i].dataset.end !== selectedSlots[i + 1].dataset.start) {
-            isConsecutive = false;
-            break;
-        }
-    }
-
-    if (isConsecutive) {
-        const startTime = selectedSlots[0].dataset.start;
-        const endTime = selectedSlots[selectedSlots.length - 1].dataset.end;
-        document.getElementById('selectedSlot').value = `${startTime}-${endTime}`;
-    } else {
-        showError('Please select consecutive time slots');
-        // Deselect all if not consecutive
-        selectedSlots.forEach(slot => slot.classList.remove('selected'));
-        document.getElementById('selectedSlot').value = '';
-    }
-}
 
 
     
@@ -2655,11 +2730,7 @@ function updateSelectedTimeRange() {
     });
 });
     
-
-
-
     // Function to toggle between time range and time slot selection
-// Update the toggleSelectionMode function
 const toggleSelectionMode = (useTimeRange) => {
     const timeRangeSelector = document.querySelector('.time-range-selector');
     const timeSlotsContainer = document.getElementById('timeSlots');
@@ -2674,11 +2745,6 @@ const toggleSelectionMode = (useTimeRange) => {
             el.classList.remove('selected');
         });
         document.getElementById('selectedSlot').value = '';
-        
-        // Make time range required and time slot not required
-        document.getElementById('startTime').required = true;
-        document.getElementById('endTime').required = true;
-        document.getElementById('selectedSlot').required = false;
     } else {
         // Using time slots - enable time slots, disable time range
         timeRangeSelector.classList.add('disabled');
@@ -2687,11 +2753,6 @@ const toggleSelectionMode = (useTimeRange) => {
         // Clear any selected time range
         document.getElementById('startTime').value = '';
         document.getElementById('endTime').value = '';
-        
-        // Make time slot required and time range not required
-        document.getElementById('startTime').required = false;
-        document.getElementById('endTime').required = false;
-        document.getElementById('selectedSlot').required = true;
     }
 };
 
@@ -2826,115 +2887,60 @@ const getBookingsForDate = async (date) => {
     }
 };
 
-// Validate time range doesn't conflict with existing bookings
+// Fixed validateTimeRange function
 const validateTimeRange = async (date, startTime, endTime) => {
-    try {
-        const bookings = await getBookingsForDate(date);
-        if (bookings.length === 0) return { valid: true };
+    const bookings = await getBookingsForDate(date);
+    if (bookings.length === 0) return { valid: true };
+    
+    // Parse start and end times into minutes since midnight
+    const parseTime = (timeStr) => {
+        const [hours, mins] = timeStr.split(':').map(Number);
+        return hours * 60 + mins;
+    };
+    
+    const startMinutes = parseTime(startTime);
+    let endMinutes = parseTime(endTime === '00:00' ? '24:00' : endTime);
+    
+    // Handle case where end time is 00:00 (next day)
+    if (endTime === '00:00') {
+        endMinutes = 24 * 60; // 24:00 in minutes
+    }
+    
+    // Check against all existing bookings
+    for (const booking of bookings) {
+        const [existingStart, existingEnd] = booking.time_slot.split('-');
+        let existingStartMinutes = parseTime(existingStart);
+        let existingEndMinutes = parseTime(existingEnd === '00:00' ? '24:00' : existingEnd);
         
-        // Parse times into minutes since midnight
-        const parseTime = (timeStr) => {
-            const [hours, mins] = timeStr.split(':').map(Number);
-            return hours * 60 + mins;
-        };
-        
-        const startMinutes = parseTime(startTime);
-        const endMinutes = parseTime(endTime === '00:00' ? '24:00' : endTime);
-        
-        // Check against all existing bookings
-        for (const booking of bookings) {
-            const [existingStart, existingEnd] = booking.time_slot.split('-');
-            const existingStartMinutes = parseTime(existingStart);
-            const existingEndMinutes = parseTime(existingEnd === '00:00' ? '24:00' : existingEnd);
-            
-            // Check for any overlap
-            const hasOverlap = (
-                (startMinutes >= existingStartMinutes && startMinutes < existingEndMinutes) ||
-                (endMinutes > existingStartMinutes && endMinutes <= existingEndMinutes) ||
-                (startMinutes <= existingStartMinutes && endMinutes >= existingEndMinutes)
-            );
-            
-            if (hasOverlap) {
-                return {
-                    valid: false,
-                    conflict: existingStart,
-                    conflictRange: `${existingStart}-${existingEnd}`
-                };
-            }
+        // Handle case where existing booking ends at 00:00
+        if (existingEnd === '00:00') {
+            existingEndMinutes = 24 * 60;
         }
         
-        return { valid: true };
-    } catch (error) {
-        console.error('Validation error:', error);
-        return { valid: false, conflictRange: 'Unknown' };
-    }
-};
-
-// Add this function to show confirmation
-const showConfirmation = (booking) => {
-    // Format time slot for display
-    const startDisplay = booking.start_time;
-    const endDisplay = booking.end_time === '00:00' ? '24:00' : booking.end_time;
-    const timeSlotDisplay = `${startDisplay} - ${endDisplay}`;
-    
-    // Show confirmation details
-    confirmName.textContent = booking.name;
-    confirmMobile.textContent = booking.mobile;
-    confirmDate.textContent = new Date(booking.booking_date).toLocaleDateString('en-US', { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-    });
-    confirmTime.textContent = timeSlotDisplay;
-    confirmId.textContent = booking.booking_id;
-    confirmType.textContent = `${booking.type === 'normal' ? 'Normal Session' : 'Full Net Session'} (${booking.price} LKR)`;
-    
-    // Hide form and show confirmation
-    document.querySelector('.booking-form').style.display = 'none';
-    document.querySelector('.booking-details').style.display = 'none';
-    confirmationContainer.style.display = 'block';
-    
-    // Scroll to confirmation
-    confirmationContainer.scrollIntoView({ behavior: 'smooth' });
-};
-
-// Add real-time subscription to detect when others make bookings
-const setupRealTimeUpdates = () => {
-    const subscription = supabase
-        .channel('bookings')
-        .on('postgres_changes', 
-            { 
-                event: 'INSERT', 
-                schema: 'public', 
-                table: 'bookings' 
-            },
-            async (payload) => {
-                console.log('New booking detected:', payload.new);
-                
-                // Refresh time slots if viewing the same date
-                if (dateInput.value === payload.new.booking_date) {
-                    const bookedSlots = await getBookedSlots(dateInput.value);
-                    await renderTimeSlots(bookedSlots);
-                    
-                    // Show notification to user
-                    showError('Note: Available slots have been updated. Please review your selection.');
-                }
-                
-                // Refresh upcoming bookings display
-                await showNext7DaysBookedSlots();
-            }
-        )
-        .subscribe();
+        // Check for overlap - FIXED LOGIC
+        const hasOverlap = (
+            // New booking starts during existing booking
+            (startMinutes >= existingStartMinutes && startMinutes < existingEndMinutes) ||
+            // New booking ends during existing booking
+            (endMinutes > existingStartMinutes && endMinutes <= existingEndMinutes) ||
+            // New booking completely contains existing booking
+            (startMinutes <= existingStartMinutes && endMinutes >= existingEndMinutes) ||
+            // Existing booking completely contains new booking
+            (existingStartMinutes <= startMinutes && existingEndMinutes >= endMinutes)
+        );
         
-    return subscription;
+        if (hasOverlap) {
+            return {
+                valid: false,
+                conflict: existingStart,
+                conflictRange: `${existingStart}-${existingEnd}`
+            };
+        }
+    }
+    
+    return { valid: true };
 };
 
-// Call this in your initialization
-document.addEventListener('DOMContentLoaded', async () => {
-    // Your existing initialization code...
-    setupRealTimeUpdates();
-});
 
 // Function to render bookings
 // Function to render bookings in the My Bookings section (without prices)
@@ -3078,7 +3084,7 @@ function clearBookingFromLocalStorage(bookingId) {
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
 
-        // Create floating particles
+        // Create floating particlesssssssss
         const createParticles = () => {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 20;
