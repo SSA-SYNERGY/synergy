@@ -3,761 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synergy Sports Academy - Posts</title>
+    <title>Page Not Found - Synergy Sports Academy</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" type="image/png" href="img/favicon.png">
     <style>
         :root {
-            --primary: #3a0ca3;
-            --primary-light: #4cc9f0;
-            --secondary: #7209b7;
-            --accent: #4361ee;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --darker: #121212;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #f8961e;
-            --gold: #ffd700;
-            --silver: #c0c0c0;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --gradient-light: linear-gradient(135deg, var(--primary-light), var(--accent));
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--darker);
-            color: var(--light);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .yunoxa-credit {
-         margin-top: 1rem;
-            font-size: 0.9rem;
-          color: rgba(255,255,255,0.6);
-           display: flex;
-          align-items: center;
-          justify-content: center;
-         gap: 0.3rem;
+    --primary: #3a0ca3;
+    --primary-light: #4cc9f0;
+    --secondary: #7209b7;
+    --accent: #4361ee;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --darker: #121212;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --gold: #ffd700;
+    --silver: #c0c0c0;
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+    --gradient-light: linear-gradient(135deg, var(--primary-light), var(--accent));
 }
 
-.yunoxa-credit i {
-    margin: 0 0.2rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 0;
-            background: rgba(18, 18, 18, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+html {
+    font-size: 14px;
+}
 
-        header.scrolled {
-            padding: 1rem 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--darker);
+    color: var(--light);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-        }
-
-        .logo i {
-            margin-right: 0.8rem;
-            font-size: 2rem;
-            color: var(--primary-light);
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover i {
-            transform: rotate(360deg);
-        }
-
-        .logo span {
-            background: linear-gradient(to right, var(--primary-light), var(--light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-light);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .posts-hero {
-            position: relative;
-            height: 50vh;
-            min-height: 400px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('img/indoor5.png') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-
-        .posts-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(58,12,163,0.3) 0%, rgba(0,0,0,0.8) 70%);
-            animation: pulse 15s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 0.7; }
-            100% { opacity: 0.3; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .posts-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary-light), var(--light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        /* Instagram-like Posts Section */
-        .posts-section {
-            padding: 6rem 0;
-            background: var(--darker);
-            position: relative;
-        }
-
-        .section-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0 auto 3rem auto; /* top right bottom left */
-    text-align: center;
-    color: white;
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: block; /* Change from inline-block to block */
+    padding: 1.5rem 0;
+    background: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .post-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .post-image {
-            height: 350px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .post-card:hover .post-image img {
-            transform: scale(1.05);
-        }
-
-        .post-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .post-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        
-
-        .post-author {
-            font-weight: 600;
-            color: white;
-        }
-
-        .post-date {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.8rem;
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-        }
-
-        .post-date i {
-            margin-right: 0.3rem;
-        }
-
-        .post-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: white;
-            line-height: 1.4;
-        }
-
-        .post-excerpt {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-
-        .post-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 1rem;
-            margin-top: auto;
-        }
-
-        .post-likes {
-            display: flex;
-            align-items: center;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-
-        .post-likes i {
-            margin-right: 0.5rem;
-            color: var(--danger);
-        }
-
-        .read-more {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: rgba(76, 201, 240, 0.1);
-        }
-
-        .read-more i {
-            margin-left: 0.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .read-more:hover {
-            color: white;
-            background: rgba(76, 201, 240, 0.3);
-        }
-
-        .read-more:hover i {
-            transform: translateX(5px);
-        }
-
-        /* Post Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            background: var(--darker);
-            max-width: 800px;
-            margin: 2rem auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            animation: modalFadeIn 0.3s ease;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-header {
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .modal-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: bold;
-            font-size: 1.8rem;
-        }
-
-        .modal-author {
-            font-weight: 600;
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-date {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
-        }
-
-        .modal-image-container {
-            margin: 1.5rem 0;
-            max-height: 500px;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .modal-image {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-
-        .modal-body {
-            text-align: center;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .modal-text {
-            color: rgba(255,255,255,0.8);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            white-space: pre-line;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: var(--primary-light);
-            transform: rotate(90deg);
-        }
-
-        /* Loading spinner */
-        .spinner {
-            width: 50px;
-            height: 50px;
-            margin: 3rem auto;
-            border: 5px solid rgba(72, 149, 239, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-light);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Error message */
-        .error-message {
-            color: white;
-            background: rgba(247, 37, 133, 0.2);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 3rem auto;
-            max-width: 800px;
-            text-align: center;
-            border: 1px solid rgba(247, 37, 133, 0.3);
-            animation: shake 0.5s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 4rem 0 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-
-        .footer-logo i {
-            margin-right: 0.8rem;
-            color: var(--primary-light);
-        }
-
-        .footer-logo span {
-            background: linear-gradient(to right, var(--primary-light), var(--light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-social a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: var(--gradient);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .posts-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .modal-content {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .modal-image-container {
-                max-height: 300px;
-            }
-        }
-
-        /* Scroll reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .status {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .status:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 0.7rem;
-        }
-
-        .status-open .status-indicator {
-            background-color: var(--success);
-            box-shadow: 0 0 10px var(--success);
-        }
-
-        .status-closed .status-indicator {
-            background-color: var(--danger);
-            box-shadow: 0 0 10px var(--danger);
-        }
-
-        .status-full .status-indicator {
-            background-color: var(--warning);
-            box-shadow: 0 0 10px var(--warning);
-        }
-
-        .logo-img {
-    width: 70px; /* Adjust size as needed */
-    height: 70px;
-    margin-right: 0.8rem;
-    transition: transform 0.3s ease;
+header.scrolled {
+    padding: 1rem 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-.logo:hover .logo-img {
-    transform: rotate(360deg);
-}
-
-/* Footer Logo Container */
-.footer-logo-container {
+.header-content {
     display: flex;
-    align-items: center; /* This vertically centers the items */
-    justify-content: center; /* This horizontally centers if needed */
-}
-
-/* Footer Logo Image */
-.footer-logo .logo-img {
-    width: 70px;
-    height: 70px;
-    margin-right: 1rem;
-    align-self: center; /* Ensures vertical alignment */
-}
-
-/* Footer Logo Text */
-.footer-logo span {
-    display: inline-block;
-    vertical-align: middle; /* Ensures text aligns properly */
-    line-height: normal; /* Resets any inherited line-height */
-}
-
-@media (max-width: 768px) {
-    html {
-        font-size: 12px;
-    }
-
-    .posts-hero {
-            position: relative;
-            height: 50vh;
-            min-height: 400px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('img/indoor5.png') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-
-        .posts-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(58,12,163,0.3) 0%, rgba(0,0,0,0.8) 70%);
-            animation: pulse 15s infinite alternate;
-        }
-
-        .error-message {
-            color: white;
-            background: rgba(4, 32, 155, 0.466);
-            padding: 1.5rem;
-            border-radius: 20px;
-            margin: 3rem auto;
-            max-width: 800px;
-            text-align: center;
-            border: 1px solid rgba(29, 2, 80, 0.3);
-            animation: shake 0.5s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-
-        .logo-img {
-    width: 40px;
-    height: 40px;
-    margin-right: 0.8rem;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover .logo-img {
-    transform: rotate(360deg);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -782,13 +103,336 @@
     -webkit-text-fill-color: transparent;
 }
 
-    
-    
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-light);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.status {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+}
+
+.status-open .status-indicator {
+    background-color: var(--success);
+    box-shadow: 0 0 10px var(--success);
+}
+
+.status-closed .status-indicator {
+    background-color: var(--danger);
+    box-shadow: 0 0 10px var(--danger);
+}
+
+/* 404 Section */
+.error-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('img/indoor.png') no-repeat center center/cover;
+    position: relative;
+    padding-top: 80px;
+}
+
+.error-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.error-content h1 {
+    font-size: 8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.error-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.error-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.btn {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(58,12,163,0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 48px;
+    min-width: 120px;
+    text-decoration: none;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--gradient-light);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(58,12,163,0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn i {
+    margin-right: 0.8rem;
+}
+
+/* Footer */
+footer {
+    background: #0a0a0a;
+    padding: 4rem 0 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.footer-logo i {
+    margin-right: 0.8rem;
+    color: var(--primary-light);
+}
+
+.footer-logo span {
+    background: linear-gradient(to right, var(--primary-light), var(--light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: var(--gradient);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.yunoxa-credit {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.yunoxa-credit i {
+    margin: 0 0.2rem;
+}
+
+/* Floating particles */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    html {
+        font-size: 12px;
+    }
+
+    .error-content h1 {
+        font-size: 5rem;
+    }
+
+    .error-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .error-content p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-social {
+        gap: 1rem;
+    }
+
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Footer Logo Container */
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Footer Logo Image */
 .footer-logo .logo-img {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     margin-right: 1rem;
     align-self: center;
 }
@@ -800,336 +444,146 @@
     line-height: normal;
 }
 
+.logo-img {
+    width: 70px;
+    height: 70px;
+    margin-right: 0.8rem;
+    transition: transform 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
+.logo:hover .logo-img {
+    transform: rotate(360deg);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Footer Logo Image */
+    .footer-logo .logo-img {
+        width: 40px;
+        height: 40px;
     }
 }
-
     </style>
 </head>
 <body>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
     <!-- Header -->
     <header id="header">
         <div class="container header-content">
-            <a href="#" class="logo">
-    <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
-    <span>Synergy Sports</span>
-</a>
+            <a href="index.html" class="logo">
+                <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
+                <span>Synergy Sports</span>
+            </a>
             
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#about">About</a>
                 <a href="index.html#booking">Book Now</a>
                 <a href="index.html#contact">Contact</a>
-                <a href="posts.html" class="active">Posts</a>
+                <a href="posts.html">Posts</a>
             </div>
-
-<div class="status status-open" id="academyStatus">
+            
+            <div class="status status-open" id="academyStatus">
                 <div class="status-indicator"></div>
                 <span>Open - Bookings Available</span>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="posts-hero">
-        <div class="hero-content">
-            <h1 class="animate__animated animate__fadeInDown">Posts</h1>
-            <p class="animate__animated animate__fadeInUp animate__delay-1s">View Our Latest Posts Here</p>
+    <!-- 404 Error Section -->
+    <section class="error-section">
+        <div class="error-content animate__animated animate__fadeIn">
+            <h1>404</h1>
+            <h2>Page Not Found</h2>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
         </div>
     </section>
-
-    <!-- Posts Section -->
-    <section class="posts-section">
-        <div class="container">
-            <h2 class="section-title reveal">Latest Posts</h2>
-            
-            <div class="posts-grid" id="postsContainer">
-                <!-- Posts will be loaded here by JavaScript -->
-                <div class="spinner" id="loadingSpinner"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Post Modal -->
-    <div id="postModal" class="modal">
-        <span class="modal-close">&times;</span>
-        <div class="modal-content" id="modalContent">
-            <!-- Modal content will be loaded here by JavaScript -->
-        </div>
-    </div>
 
     <!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-    <div class="footer-logo-container">
-        <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
-        <span>Synergy Sports</span>
-    </div>
-</div>
-        
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#booking">Book Now</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="posts.html">Posts</a>
-        </div>
-        
-        <div class="footer-social">
-            <a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="footer-logo-container">
+                    <img src="img/favicon.png" alt="Synergy Sports Logo" class="logo-img">
+                    <span>Synergy Sports</span>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#booking">Book Now</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="posts.html">Posts</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://www.facebook.com/abishek.lanka.7"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/p/DMiXjHMypuRmcr2Gk5Qqi-eIHYn3vtD6lTpFv80/?igsh=aGlyeW00a28zNWhp"><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/94701295479"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://www.tiktok.com/@dinethabeyrathna?_t=ZS-8yM3jNPcAyY&_r=1"><i class="fab fa-tiktok"></i></a>
-        </div>
-        
-        <div class="copyright">
-            &copy; 2025 Synergy Sports Academy. All rights reserved.
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Synergy Sports Academy. All rights reserved.
+            </div>
             <div class="yunoxa-credit">
-                Made with</i>  Yunoxa
+                Made with</i> Roxlon
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module">
-        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-        // Initialize Supabase
-        const supabaseUrl = 'https://pjizlsqsoabenusktozx.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqaXpsc3Fzb2FiZW51c2t0b3p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTUzMDMsImV4cCI6MjA2ODg5MTMwM30.-io9iSz6H9DhCN_esvmcX_RjlJAkd9mpa_ujhNoTrZ8';
-        const supabase = createClient(supabaseUrl, supabaseKey);
-
-        // DOM elements
-        const postsContainer = document.getElementById('postsContainer');
-        const loadingSpinner = document.getElementById('loadingSpinner');
-        const postModal = document.getElementById('postModal');
-        const modalContent = document.getElementById('modalContent');
-        const modalClose = document.querySelector('.modal-close');
-        const academyStatus = document.getElementById('academyStatus');
-
-        // Format date
-        const formatDate = (dateString) => {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-US', options);
-        };
-
-        // Get initials for avatar
-        const getInitials = (name) => {
-            return name.split(' ').map(word => word[0]).join('').toUpperCase();
-        };
-
-        // Load posts from Supabase
-        const loadPosts = async () => {
-            try {
-                loadingSpinner.style.display = 'block';
+    <script>
+        // Create floating particles
+        const createParticles = () => {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
                 
-                // Fetch posts from Supabase
-                const { data: posts, error } = await supabase
-                    .from('posts')
-                    .select('*')
-                    .order('created_at', { ascending: false });
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
                 
-                if (error) throw error;
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
                 
-                // Clear loading spinner
-                loadingSpinner.style.display = 'none';
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
                 
-                if (posts.length === 0) {
-                    postsContainer.innerHTML = '<div class="error-message">No posts found. Check back later!</div>';
-                    return;
-                }
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
                 
-                // Render posts
-                postsContainer.innerHTML = '';
-                
-                posts.forEach(post => {
-                    const postCard = document.createElement('div');
-                    postCard.className = 'post-card reveal';
-                    
-                    // Get image URL from Supabase Storage
-                    let imageUrl = 'https://images.unsplsh.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
-                    
-                    if (post.image_path) {
-                        const { data: { publicUrl } } = supabase
-                            .storage
-                            .from('post_images')
-                            .getPublicUrl(post.image_path);
-                        imageUrl = publicUrl;
-                    }
-                    
-                    // Create author name from email if author field doesn't exist
-                    const authorName = post.author || post.email ? post.email.split('@')[0] : 'SYNERGY';
-                    const initials = getInitials(authorName);
-                    
-                    postCard.innerHTML = `
-                        <div class="post-image">
-                            <img src="${imageUrl}" alt="${post.title}">
-                        </div>
-                        <div class="post-content">
-                            <div class="post-header">
-                                
-                                <div class="post-author">${authorName}</div>
-                                <div class="post-date">
-                                    <i class="far fa-calendar-alt"></i>
-                                    ${formatDate(post.created_at)}
-                                </div>
-                            </div>
-                            <h3 class="post-title">${post.title}</h3>
-                            <p class="post-excerpt">${post.content.substring(0, 150)}...</p>
-                            <div class="post-actions">
-                                <div class="post-likes">
-                                    <i class="fas fa-heart"></i>
-                                    ${Math.floor(Math.random() * 100)} likes
-                                </div>
-                                <a href="#" class="read-more" data-id="${post.id}">
-                                    Read More <i class="fas fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    postsContainer.appendChild(postCard);
-                });
-                
-                // Initialize scroll reveal
-                initScrollReveal();
-                
-                // Add event listeners to read more buttons
-                document.querySelectorAll('.read-more').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const postId = e.target.closest('.read-more').getAttribute('data-id');
-                        const post = posts.find(p => p.id == postId);
-                        if (post) {
-                            showPostModal(post);
-                        }
-                    });
-                });
-                
-            } catch (error) {
-                console.error('Error loading posts:', error);
-                loadingSpinner.style.display = 'none';
-                postsContainer.innerHTML = `
-                    <div class="error-message">
-                        Failed to load posts. Please try again later.
-                    </div>
-                `;
+                particlesContainer.appendChild(particle);
             }
-        };
-
-        // Check academy status
-        const checkAcademyStatus = async () => {
-            try {
-                // Get current time
-                const now = new Date();
-                const currentHour = now.getHours();
-                
-                // Academy is open from 5AM to 11PM
-                if (currentHour >= 5 && currentHour < 23) {
-                    academyStatus.className = 'status status-open';
-                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Open - Bookings Available</span>';
-                } else {
-                    academyStatus.className = 'status status-closed';
-                    academyStatus.innerHTML = '<div class="status-indicator"></div><span>Closed - Check Back Tomorrow</span>';
-                }
-            } catch (error) {
-                console.error('Error checking academy status:', error);
-                academyStatus.className = 'status status-closed';
-                academyStatus.innerHTML = '<div class="status-indicator"></div><span>Status Unavailable</span>';
-            }
-            
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-    loadPosts();
-    checkAcademyStatus(); // Add this line
-});
-
-        // Show post in modal
-        const showPostModal = (post) => {
-            // Get image URL from Supabase Storage
-            let imageUrl = 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
-            
-            if (post.image_path) {
-                const { data: { publicUrl } } = supabase
-                    .storage
-                    .from('post_images')
-                    .getPublicUrl(post.image_path);
-                imageUrl = publicUrl;
-            }
-            
-            // Create author name from email if author field doesn't exist
-            const authorName = post.author || post.email ? post.email.split('@')[0] : 'SYNERGY';
-            const initials = getInitials(authorName);
-            
-            modalContent.innerHTML = `
-                <div class="modal-header">
-                    
-                    <div class="modal-author">${authorName}</div>
-                    <div class="modal-date">
-                        <i class="far fa-calendar-alt"></i>
-                        ${formatDate(post.created_at)}
-                    </div>
-                </div>
-                <div class="modal-image-container">
-                    <img src="${imageUrl}" alt="${post.title}" class="modal-image">
-                </div>
-                <div class="modal-body">
-                    <h2 class="modal-title">${post.title}</h2>
-                    <p class="modal-text">${post.content}</p>
-                    <div class="post-likes">
-                        <i class="fas fa-heart"></i>
-                        ${Math.floor(Math.random() * 100)} likes
-                    </div>
-                </div>
-            `;
-            
-            postModal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        };
-
-        // Close modal
-        const closeModal = () => {
-            postModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
-
-        // Modal event listeners
-        modalClose.addEventListener('click', closeModal);
-        postModal.addEventListener('click', (e) => {
-            if (e.target === postModal) {
-                closeModal();
-            }
-        });
-
-        // Initialize scroll reveal
-        const initScrollReveal = () => {
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealOnScroll = () => {
-                revealElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (elementTop < windowHeight - 100) {
-                        element.classList.add('active');
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', revealOnScroll);
-            window.addEventListener('load', revealOnScroll);
-            revealOnScroll(); // Initial check
         };
 
         // Header scroll effect
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
@@ -1137,8 +591,8 @@
             }
         });
 
-        // Load posts when page loads
-        document.addEventListener('DOMContentLoaded', loadPosts);
+        // Initialize
+        createParticles();
     </script>
 </body>
 </html>
